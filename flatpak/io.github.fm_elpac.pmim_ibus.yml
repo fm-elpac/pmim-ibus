@@ -21,7 +21,7 @@ finish-args:
   - --share=network
   - --device=dri
   - --filesystem=xdg-run/pmim:create
-  - --filesystem=xdg-config/pmim:create
+  #- --filesystem=xdg-config/pmim:create
 
 modules:
   - name: pmim-ibus
@@ -80,7 +80,7 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - zypak-wrapper.sh /app/electron-dist/electron /app/main/main.js "$@"
+          - env PMIMS_DB=${XDG_CONFIG_HOME}/pmim zypak-wrapper.sh /app/electron-dist/electron /app/main/main.js "$@"
 
       - type: dir
         path: ../electronjs

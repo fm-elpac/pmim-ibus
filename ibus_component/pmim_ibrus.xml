@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- pmim_ibrus.xml -->
+<!-- /usr/share/ibus/component/pmim_ibrus.xml -->
 <component>
   <name>org.fm_elpac.pmim</name>
   <description>PMIM (ibus)</description>
-  <exec>/home/s2/.config/pmim/ibrus --flatpak</exec>
+  <exec>/home/USER_NAME/.var/app/io.github.fm_elpac.pmim_ibus/config/pmim/ibrus --flatpak</exec>
   <version>0.1.0-a1</version>
   <author>secext2022</author>
   <license>GPL</license>

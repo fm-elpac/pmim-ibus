@@ -1,6 +1,7 @@
 flatpak/build
 flatpak/build_src
 flatpak/.flatpak-builder
+flatpak/repo
 
 flatpak/node_modules
 flatpak/package.json
