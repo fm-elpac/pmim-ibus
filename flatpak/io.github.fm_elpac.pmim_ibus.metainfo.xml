@@ -72,7 +72,8 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://example.org/example1.png</image>
+      <!-- https://github.com/fm-elpac/pmim-ibus/blob/92f2fc39e6e42f248261d9a5892d9eef89235679/img/20240301_112648.png -->
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@92f2fc39e6e42f248261d9a5892d9eef89235679/img/20240301_112648.png</image>
       <caption>screenshot of running</caption>
       <caption xml:lang="zh">运行截图</caption>
     </screenshot>
