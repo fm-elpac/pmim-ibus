@@ -1,0 +1,106 @@
+app-id: io.github.fm_elpac.pmim_ibus
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+
+base: org.electronjs.Electron2.BaseApp
+base-version: '23.08'
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node20
+build-options:
+  append-path: /usr/lib/sdk/node20/bin
+  env:
+    NPM_CONFIG_LOGLEVEL: info
+separate-locales: false
+
+command: run.sh
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=network
+  - --device=dri
+  - --filesystem=xdg-run/pmim:create
+  - --filesystem=xdg-config/pmim:create
+
+modules:
+  - name: pmim-ibus
+    buildsystem: simple
+    build-options:
+      env:
+        XDG_CACHE_HOME: /run/build/pmim-ibus/flatpak-node/cache
+        npm_config_cache: /run/build/pmim-ibus/flatpak-node/npm-cache
+        npm_config_offline: 'true'
+    build-commands:
+      # 桌面应用所需的文件
+      - install -D -t /app/share/metainfo/ io.github.fm_elpac.pmim_ibus.metainfo.xml
+      - install -D -t /app/share/applications/ io.github.fm_elpac.pmim_ibus.desktop
+      - install -D pmim-2024-2.svg /app/share/icons/hicolor/scalable/apps/io.github.fm_elpac.pmim_ibus.svg
+
+      - install -Dm755 -t /app/bin/ run.sh
+      # deno
+      - install -Dm755 -t /app/bin/ deno
+      # ibrus
+      - install -Dm755 -t /app/bin/ ibrus
+
+      - install -Dm755 -t /app/bin/ restart.sh
+
+      - install -D -t /app/ LICENSE
+      - install -D -t /app/ README.md
+
+      # electronjs
+      - mkdir -p /app/main
+      - cp build-electronjs/*.js /app/main
+
+      # pmim-server
+      - tar --no-same-owner -xvf pmim-server.tar.zst
+      - cp -r server /app/
+      #- rm -r /app/server/node_modules
+
+      - cp -r build-ui/* /app/server/static/
+
+      # electron 二进制
+      - cp -r electron-dist /app
+
+    sources:
+      # 桌面应用所需的文件
+      - type: file
+        path: io.github.fm_elpac.pmim_ibus.metainfo.xml
+      - type: file
+        path: io.github.fm_elpac.pmim_ibus.desktop
+      # 图标
+      - type: file
+        path: ../logo/pmim-2024-2.svg
+
+      - type: file
+        path: ../LICENSE
+      - type: file
+        path: ../README.md
+
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - zypak-wrapper.sh /app/electron-dist/electron /app/main/main.js "$@"
+
+      - type: dir
+        path: ../electronjs
+        dest: build-electronjs
+      - type: dir
+        path: node_modules/electron/dist
+        dest: electron-dist
+
+      - type: dir
+        path: ../ui-vue/dist
+        dest: build-ui
+
+      - type: file
+        path: ./build_src/deno
+      - type: file
+        path: ./build_src/ibrus
+      - type: file
+        path: ./build_src/pmim-server.tar.zst
+
+      - type: file
+        path: ./restart.sh
+
+# TODO

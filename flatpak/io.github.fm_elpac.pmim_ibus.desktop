@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+
+Name=胖喵拼音
+Comment=胖喵拼音输入法 (ibus)
+Categories=Utility;Accessibility;
+
+Icon=io.github.fm_elpac.pmim_ibus
+Exec=run.sh
+Terminal=false

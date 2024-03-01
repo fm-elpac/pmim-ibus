@@ -1,0 +1,7 @@
+flatpak/build
+flatpak/build_src
+flatpak/.flatpak-builder
+
+flatpak/node_modules
+flatpak/package.json
+flatpak/package-lock.json

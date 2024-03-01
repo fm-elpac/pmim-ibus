@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
+
+    - run: deno fmt --check
+
+    # ui-vue/
+    - run: cd ui-vue && npm install
+    - run: cd ui-vue && npm run build
+
+    # build lo
+    - run: cd ui-vue/dist && ln -s assets/lo1-*.js lo1.js
+    - run: cd ui-vue && npx webpack
+    - run: rm ui-vue/dist/lo1.js
+    - run: cd ui-vue && deno run --allow-read lo/fix.js dist/lo1/index.html > dist/lo/index.html
+
+    - run: |
+        tar --zstd -cvf ui-vue-dist.tar.zst \
+        ui-vue/dist
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ui-vue-dist
+        path: ui-vue-dist.tar.zst
+
+  flatpak:
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-45
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v4
+
+    - run: dnf -y install npm
+
+    # build (ui-vue/dist)
+    - run: cd ui-vue && npm install
+    - run: cd ui-vue && npm run build
+
+    # install electronjs
+    - run: cd flatpak && npm install electron
+
+    - run: mkdir -p flatpak/build_src
+    # download deno
+    - uses: robinraju/release-downloader@v1
+      with:
+        repository: "denoland/deno"
+        tag: "v1.41.0"
+        fileName: "deno-x86_64-unknown-linux-gnu.zip"
+    - run: unzip deno-x86_64-unknown-linux-gnu.zip && cp deno flatpak/build_src
+
+    # download pmim-server
+    - uses: robinraju/release-downloader@v1
+      with:
+        repository: "fm-elpac/pmim"
+        tag: "v0.1.1"
+        fileName: "pmim-server.tar.zst"
+    - run: cp pmim-server.tar.zst flatpak/build_src
+
+    # download ibrus
+    - uses: robinraju/release-downloader@v1
+      with:
+        repository: "fm-elpac/librush"
+        tag: "v0.1.0-a1"
+        fileName: "librush_release_x86_64-unknown-linux-gnu.tar.zst"
+    - run: tar -xvf librush_release_x86_64-unknown-linux-gnu.tar.zst
+    - run: cp target/release/ibrus flatpak/build_src
+
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      with:
+        bundle: pmim_ibus.flatpak
+        manifest-path: flatpak/io.github.fm_elpac.pmim_ibus.yml
+
+  # TODO

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- pmim_ibrus.xml -->
+<component>
+  <name>org.fm_elpac.pmim</name>
+  <description>PMIM (ibus)</description>
+  <exec>/home/s2/.config/pmim/ibrus --flatpak</exec>
+  <version>0.1.0-a1</version>
+  <author>secext2022</author>
+  <license>GPL</license>
+  <homepage>https://github.com/fm-elpac/pmim-ibus</homepage>
+  <textdomain>pmim-ibus</textdomain>
+
+  <engines>
+    <engine>
+      <name>pmim</name>
+      <language>zh_CN</language>
+      <license>GPL</license>
+      <author>secext2022</author>
+      <icon>/usr/share/pmim/icons/pmim-ibus.svg</icon>
+      <layout>default</layout>
+      <longname>胖喵拼音</longname>
+      <description>胖喵拼音输入法 (ibus)</description>
+      <rank>99</rank>
+      <symbol>喵</symbol>
+      <icon_prop_key>InputMode</icon_prop_key>
+      <setup>/usr/lib/pmim/ibus-setup</setup>
+      <textdomain>pmim-ibus</textdomain>
+    </engine>
+  </engines>
+</component>
