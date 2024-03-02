@@ -5,7 +5,7 @@ const p = defineProps({
   页码: Number,
   总页数: Number,
   拼音上: String,
-  拼音下: String,
+  拼音下: Array,
 });
 </script>
 

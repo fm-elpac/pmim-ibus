@@ -32,6 +32,10 @@ modules:
         npm_config_cache: /run/build/pmim-ibus/flatpak-node/npm-cache
         npm_config_offline: 'true'
     build-commands:
+      # DEBUG
+      - pwd
+      - env
+
       # 桌面应用所需的文件
       - install -D -t /app/share/metainfo/ io.github.fm_elpac.pmim_ibus.metainfo.xml
       - install -D -t /app/share/applications/ io.github.fm_elpac.pmim_ibus.desktop
@@ -60,7 +64,7 @@ modules:
       - cp -r build-ui/* /app/server/static/
 
       # electron 二进制
-      - cp -r electron-dist /app
+      - cp -r dist-electron /app
 
     sources:
       # 桌面应用所需的文件
@@ -80,14 +84,14 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - env PMIMS_DB=${XDG_CONFIG_HOME}/pmim zypak-wrapper.sh /app/electron-dist/electron /app/main/main.js "$@"
+          - env PMIMS_DB=${XDG_CONFIG_HOME}/pmim zypak-wrapper.sh /app/dist-electron/electron /app/main/main.js "$@"
 
       - type: dir
         path: ../electronjs
         dest: build-electronjs
       - type: dir
         path: node_modules/electron/dist
-        dest: electron-dist
+        dest: dist-electron
 
       - type: dir
         path: ../ui-vue/dist

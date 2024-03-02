@@ -14,7 +14,7 @@ const p = defineProps({
   // 全拼
   拼音上: String,
   // 输入的拼音
-  拼音下: String,
+  拼音下: Array,
   // 候选项
   候选: Array,
 });

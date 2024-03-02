@@ -89,16 +89,18 @@ export class 输入管理器 {
     //# 显示状态
     this._显示_拼音上 = computed(() => this._全拼.value.join("'") + " ");
 
+    // 返回值: Array<string>
+    // [已输入汉字, 剩余双拼, 剩余原始输入]
     this._显示_拼音下 = computed(() => {
-      const o = [
-        this._已输入汉字.value.join(""),
-      ].concat(this._剩余双拼.value);
+      const 已输入汉字 = this._已输入汉字.value.join("");
+      const 剩余双拼 = this._剩余双拼.value.join(" ");
+      let 剩余原始输入 = "";
 
       const { r } = this._拼音.value;
       if (null != r) {
-        o.push(r);
+        剩余原始输入 = r;
       }
-      return o.join(" ").trim();
+      return [已输入汉字, 剩余双拼, 剩余原始输入];
     });
 
     // 状态变更处理
