@@ -5,12 +5,6 @@ sdk: org.freedesktop.Sdk
 
 base: org.electronjs.Electron2.BaseApp
 base-version: '23.08'
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node20
-build-options:
-  append-path: /usr/lib/sdk/node20/bin
-  env:
-    NPM_CONFIG_LOGLEVEL: info
 separate-locales: false
 
 command: run.sh
@@ -26,85 +20,99 @@ finish-args:
 modules:
   - name: pmim-ibus
     buildsystem: simple
-    build-options:
-      env:
-        XDG_CACHE_HOME: /run/build/pmim-ibus/flatpak-node/cache
-        npm_config_cache: /run/build/pmim-ibus/flatpak-node/npm-cache
-        npm_config_offline: 'true'
     build-commands:
       # DEBUG
       - pwd
-      - env
+      - ls -l
+      - ls -l pmim-ibus
+      - ls -l ui/dist
+      - ls -l server
+      - ls -l dist-deno
+      - ls -l dist-electron
+      - ls -l dist-librush
+      #- ls -l pmim-data
 
-      # 桌面应用所需的文件
-      - install -D -t /app/share/metainfo/ io.github.fm_elpac.pmim_ibus.metainfo.xml
-      - install -D -t /app/share/applications/ io.github.fm_elpac.pmim_ibus.desktop
-      - install -D pmim-2024-2.svg /app/share/icons/hicolor/scalable/apps/io.github.fm_elpac.pmim_ibus.svg
+      # files for desktop app
+      - install -D -t /app/share/metainfo/ pmim-ibus/flatpak/io.github.fm_elpac.pmim_ibus.metainfo.xml
+      - install -D -t /app/share/applications/ pmim-ibus/flatpak/io.github.fm_elpac.pmim_ibus.desktop
+      - install -D pmim-ibus/logo/pmim-2024-2.svg /app/share/icons/hicolor/scalable/apps/io.github.fm_elpac.pmim_ibus.svg
 
+      - install -D -t /app/ pmim-ibus/LICENSE
+      - install -D -t /app/ pmim-ibus/README.md
+
+      # /app/bin
       - install -Dm755 -t /app/bin/ run.sh
-      # deno
-      - install -Dm755 -t /app/bin/ deno
-      # ibrus
-      - install -Dm755 -t /app/bin/ ibrus
+      - install -Dm755 -t /app/bin/ pmim-ibus/flatpak/restart.sh
 
-      - install -Dm755 -t /app/bin/ restart.sh
+      - install -Dm755 -t /app/bin/ dist-deno/deno
 
-      - install -D -t /app/ LICENSE
-      - install -D -t /app/ README.md
+      - |
+        if [ "$FLATPAK_ARCH" == "x86_64" ]; then
+          install -Dm755 -t /app/bin/ dist-librush/release/ibrus
+        fi
+      - |
+        if [ "$FLATPAK_ARCH" == "aarch64" ]; then
+          install -Dm755 -t /app/bin/ dist-librush/aarch64-unknown-linux-gnu/release/ibrus
+        fi
 
-      # electronjs
+      - cp pmim-ibus/ibus_component/pmim_ibrus.xml /app
+
+      # /app/main *.js
       - mkdir -p /app/main
-      - cp build-electronjs/*.js /app/main
+      - cp pmim-ibus/electronjs/*.js /app/main
 
       # pmim-server
-      - tar --no-same-owner -xvf pmim-server.tar.zst
       - cp -r server /app/
-      #- rm -r /app/server/node_modules
+      # ui-vue-dist
+      - cp -r ui/dist/* /app/server/static/
 
-      - cp -r build-ui/* /app/server/static/
-
-      # electron 二进制
+      # electron dist
       - cp -r dist-electron /app
 
+      # DEBUG
+      - find /app
+
     sources:
-      # 桌面应用所需的文件
-      - type: file
-        path: io.github.fm_elpac.pmim_ibus.metainfo.xml
-      - type: file
-        path: io.github.fm_elpac.pmim_ibus.desktop
-      # 图标
-      - type: file
-        path: ../logo/pmim-2024-2.svg
-
-      - type: file
-        path: ../LICENSE
-      - type: file
-        path: ../README.md
-
       - type: script
         dest-filename: run.sh
         commands:
           - env PMIMS_DB=${XDG_CONFIG_HOME}/pmim zypak-wrapper.sh /app/dist-electron/electron /app/main/main.js "$@"
 
+      # pmim-ibus
       - type: dir
-        path: ../electronjs
-        dest: build-electronjs
-      - type: dir
-        path: node_modules/electron/dist
-        dest: dist-electron
+        path: ../
+        dest: pmim-ibus
 
+      # pmim-ibus/ui-vue-dist
       - type: dir
-        path: ../ui-vue/dist
-        dest: build-ui
+        path: ../ui-vue
+        dest: ui
 
-      - type: file
-        path: ./build_src/deno
-      - type: file
-        path: ./build_src/ibrus
-      - type: file
+      # pmim-server
+      - type: archive
+        dest: server
         path: ./build_src/pmim-server.tar.zst
+        sha256: d06bd825f04ac5b96ac6e6c6824e83b87849fbb082c10994df226f246689e660
 
-      - type: file
-        path: ./restart.sh
+      # deno
+      - type: archive
+        dest: dist-deno
+        only-arches: [ "x86_64" ]
+        path: ./build_src/deno-x86_64-unknown-linux-gnu.zip
+        sha256: 233377822ad21dd8e90953e0d0301dfa8219379bf0512b1e15aa4f507e830b7b
+
+      # electronjs dist
+      - type: archive
+        dest: dist-electron
+        only-arches: [ "x86_64" ]
+        path: ./build_src/electron-v29.1.0-linux-x64.zip
+        sha256: af7964b3f8c72b5ec1946b46a8396fda67feae71ae0b8bdb329e2abcccf45a81
+
+      # ibrus
+      - type: archive
+        dest: dist-librush
+        only-arches: [ "x86_64" ]
+        path: ./build_src/librush_release_x86_64-unknown-linux-gnu.tar.zst
+        sha256: 87c842509ffd5d516a505e612c970afb53a9e47c66208f7e07dcc7abea1cd77e
 
 # TODO
