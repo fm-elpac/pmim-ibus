@@ -63,7 +63,7 @@ jobs:
     - uses: robinraju/release-downloader@v1
       with:
         repository: "denoland/deno"
-        tag: "v1.41.0"
+        tag: "v1.41.1"
         fileName: "deno-x86_64-unknown-linux-gnu.zip"
     - run: mv deno-x86_64-unknown-linux-gnu.zip flatpak/build_src
 
