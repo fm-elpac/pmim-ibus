@@ -50,10 +50,6 @@ jobs:
     - run: cd ui-vue && npm install
     - run: cd ui-vue && npm run build
 
-    # TODO
-    # install electronjs
-    #- run: cd flatpak && npm install electron
-
     - run: mkdir -p flatpak/build_src
     # pmim-server
     - uses: robinraju/release-downloader@v1
@@ -85,7 +81,7 @@ jobs:
         repository: "fm-elpac/librush"
         tag: "v0.1.0-a1"
         fileName: "librush_release_x86_64-unknown-linux-gnu.tar.zst"
-    - mv librush_release_x86_64-unknown-linux-gnu.tar.zst flatpak/build_src
+    - run: mv librush_release_x86_64-unknown-linux-gnu.tar.zst flatpak/build_src
 
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
