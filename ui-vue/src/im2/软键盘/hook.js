@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { 默认符号列表 } from "../c/键盘/键盘布局.js";
 import { 适配a } from "../../输入/a/mod.js";
 import {
@@ -6,7 +6,9 @@ import {
   aa_发送键_退格,
   aa_提交,
   aa_隐藏键盘,
+  aa可用,
 } from "@/api/aa/mod.js";
+import { pm_commit, pm_li } from "@/api/da/mod.js";
 
 export function use输入() {
   // Android 输入适配器
@@ -23,6 +25,8 @@ export function use输入() {
   const 键盘 = ref("拼");
   // 符号键盘显示的内容
   const 符号列表 = ref(默认符号列表);
+  // 扩展键盘 (0) 显示的内容
+  const 扩展列表 = ref([]);
 
   function 设键盘(v) {
     键盘.value = v;
@@ -33,6 +37,33 @@ export function use输入() {
 
     aa_隐藏键盘();
   }
+
+  async function 加载符号列表() {
+    const { c } = await pm_li("a");
+    符号列表.value = c;
+  }
+
+  async function 加载扩展列表() {
+    const { c } = await pm_li("o", 0);
+    扩展列表.value = c;
+  }
+
+  // 初始加载
+  onMounted(async () => {
+    await 加载符号列表();
+    await 加载扩展列表();
+  });
+
+  // 每次离开键盘后刷新
+  watch(键盘, async (新, 旧) => {
+    if (新 != 旧) {
+      if ("@" == 旧) {
+        await 加载符号列表();
+      } else if ("x" == 旧) {
+        await 加载扩展列表();
+      }
+    }
+  });
 
   // 只允许输入 `a` ~ `z`
   function 检查az(t) {
@@ -72,7 +103,23 @@ export function use输入() {
       }
 
       // 输入字符
-      aa_提交(t);
+      if (aa可用()) {
+        aa_提交(t);
+      }
+
+      // 符号键盘, 更新频率
+      if ("@" == 键盘.value) {
+        await pm_commit({
+          t,
+          c: "a",
+        });
+      } else if ("x" == 键盘.value) {
+        await pm_commit({
+          t,
+          c: "o",
+          o_id: 0,
+        });
+      }
     } else if ("退格" == c) {
       if (拼音.value) {
         // 删除输入的一个字符
@@ -104,6 +151,7 @@ export function use输入() {
     拼音,
     键盘,
     符号列表,
+    扩展列表,
     拼音上,
     拼音下,
     候选,

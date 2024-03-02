@@ -11,6 +11,8 @@ const p = defineProps({
   键盘: String,
   // 符号键盘的内容 (32 个)
   符号列表: Array,
+  // 扩展键盘显示的内容
+  扩展列表: Array,
   // 全拼
   拼音上: String,
   // 输入的拼音
@@ -38,11 +40,13 @@ function 输入(n) {
 }
 
 const 符号列表 = computed(() => p.符号列表);
+const 扩展列表 = computed(() => p.扩展列表);
 const 拼音上 = computed(() => p.拼音上);
 const 拼音下 = computed(() => p.拼音下);
 const 候选 = computed(() => p.候选);
 
 provide("符号列表", 符号列表);
+provide("扩展列表", 扩展列表);
 provide("拼音上", 拼音上);
 provide("拼音下", 拼音下);
 provide("候选", 候选);

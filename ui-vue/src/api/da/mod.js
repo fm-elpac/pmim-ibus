@@ -41,9 +41,18 @@ export async function pm_p2c(p) {
   });
 }
 
+// 列表显示: ASCII 符号, 扩展
+export async function pm_li(c, o_id) {
+  return await da_post("li", {
+    c,
+    o_id,
+  });
+}
+
 // DEBUG
 window.pm_version = pm_version;
 window.pm_f = pm_f;
 window.pm_commit = pm_commit;
 window.pm_pin_yin = pm_pin_yin;
 window.pm_p2c = pm_p2c;
+window.pm_li = pm_li;
