@@ -28,7 +28,7 @@ modules:
       - ls -l ui/dist
       - ls -l server
       - ls -l dist-deno
-      - ls -l dist-electron
+      #- ls -l dist-electron
       - ls -l dist-librush
       #- ls -l pmim-data
 
@@ -67,7 +67,11 @@ modules:
       - cp -r ui/dist/* /app/server/static/
 
       # electron dist
-      - cp -r dist-electron /app
+      - mkdir -p /app/dist-electron
+      - cp dist-electron.zip /app/dist-electron
+      - cd /app/dist-electron && unzip dist-electron.zip
+      - rm /app/dist-electron/dist-electron.zip
+      #- cp -r dist-electron /app
 
       # DEBUG
       - find /app
@@ -102,9 +106,11 @@ modules:
         sha256: 233377822ad21dd8e90953e0d0301dfa8219379bf0512b1e15aa4f507e830b7b
 
       # electronjs dist
-      - type: archive
-        dest: dist-electron
+      - type: file
+      #- type: dir
+        dest-filename: dist-electron.zip
         only-arches: [ "x86_64" ]
+        #path: node_modules/electron/dist
         path: ./build_src/electron-v29.1.0-linux-x64.zip
         sha256: af7964b3f8c72b5ec1946b46a8396fda67feae71ae0b8bdb329e2abcccf45a81
 
