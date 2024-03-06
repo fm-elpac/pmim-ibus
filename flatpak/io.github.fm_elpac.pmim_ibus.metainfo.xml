@@ -7,12 +7,15 @@
 
   <name>PMIM</name>
   <name xml:lang="zh">胖喵拼音</name>
+  <name xml:lang="zh-Hans">胖喵拼音</name>
   <summary>A Chinese pinyin input method</summary>
   <summary xml:lang="zh">可信任的跨平台开源输入法</summary>
+  <summary xml:lang="zh-Hans">可信任的跨平台开源输入法</summary>
 
   <developer id="io.github.fm_elpac">
     <name>secext2022</name>
     <name xml:lang="zh">第二扩展</name>
+    <name xml:lang="zh-Hans">穷人小水滴</name>
   </developer>
 
   <description>
@@ -35,12 +38,25 @@
 
       本输入法是跨平台的, 另外还有 Android 版本 (详见项目页面).
     </p>
+    <p xml:lang="zh-Hans">
+      胖喵拼音输入法 (ibus)
+
+      本输入法的功能非常简单 (简陋), 使用之前请做好心理准备.
+      但是本输入法的源代码一共只有几千行,
+      建议每个用户在使用之前先读一遍源代码.
+
+      本输入法是跨平台的, 另外还有 Android 版本 (详见项目页面).
+    </p>
     <p>
       Please note that this is only the input method (engine),
       need to install and configure ibus for this app to work.
       Please see the project page (link below) for how to setup.
     </p>
     <p xml:lang="zh">
+      这只是输入法, 需要另外安装和配置 ibus 才能正常工作.
+      具体安装步骤请见项目页面 (链接在下方).
+    </p>
+    <p xml:lang="zh-Hans">
       这只是输入法, 需要另外安装和配置 ibus 才能正常工作.
       具体安装步骤请见项目页面 (链接在下方).
     </p>
@@ -60,12 +76,15 @@
   <keywords>
     <keyword translate="no">ibus</keyword>
     <keyword xml:lang="zh">ibus</keyword>
+    <keyword xml:lang="zh-Hans">ibus</keyword>
 
     <keyword translate="no">input method</keyword>
     <keyword xml:lang="zh">输入法</keyword>
+    <keyword xml:lang="zh-Hans">输入法</keyword>
 
     <keyword translate="no">pinyin</keyword>
     <keyword xml:lang="zh">拼音</keyword>
+    <keyword xml:lang="zh-Hans">拼音</keyword>
   </keywords>
 
   <content_rating type="oars-1.1" />
@@ -76,14 +95,24 @@
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@92f2fc39e6e42f248261d9a5892d9eef89235679/img/20240301_112648.png</image>
       <caption>screenshot of running</caption>
       <caption xml:lang="zh">运行截图</caption>
+      <caption xml:lang="zh-Hans">运行截图</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="0.1.2" date="2024-03-06">
+      <description>
+        <p>Fix flathub translate.</p>
+        <p xml:lang="zh">修复 flathub 翻译.</p>
+        <p xml:lang="zh-Hans">修复 flathub 翻译.</p>
+      </description>
+    </release>
+
     <release version="0.1.0" date="2024-03-01">
       <description>
         <p>The first version.</p>
         <p xml:lang="zh">首个发布版本.</p>
+        <p xml:lang="zh-Hans">首个发布版本.</p>
       </description>
     </release>
   </releases>
