@@ -31,6 +31,12 @@ function sleep(ms) {
 async function 初始化(获取加载地址) {
   logi(": flatpak 初始化");
 
+  // 不启动 pmim-server
+  if (1 == process.env["PMIM_NS"]) {
+    logi(": 不启动 pmim-server");
+    return;
+  }
+
   // 删除 XDG_RUNTIME_DIR/pmim/us
   const US = process.env["XDG_RUNTIME_DIR"] + "/pmim/us";
   logi(": rm " + US);

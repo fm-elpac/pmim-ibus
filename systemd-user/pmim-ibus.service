@@ -1,9 +1,0 @@
-[Unit]
-Description=pmim-ibus (electronjs)
-
-[Service]
-ExecStart=electron ${HOME}/.local/pmim/main.js
-After=pmim.service
-
-[Install]
-WantedBy=default.target

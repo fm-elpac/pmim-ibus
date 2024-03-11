@@ -5,8 +5,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 
 const flatpak = require("./flatpak.js");
 
-// FIXME
-app.commandLine.appendSwitch("disable-accelerated-video-decode");
+//app.commandLine.appendSwitch("disable-accelerated-video-decode");
 
 const LOGP = "pmim-ibus electronjs";
 
@@ -103,8 +102,22 @@ function 初始化接口() {
   ipcMain.handle("ea:窗口位置", 窗口位置);
 }
 
-function 创建窗口(is_flatpak) {
+function getWebPreferences() {
   const preload = path.join(__dirname, "preload.js");
+
+  return {
+    preload,
+
+    // 默认页面缩放
+    zoomFactor: 1.4,
+  };
+}
+
+function 创建主窗口(is_flatpak) {
+  if (null != 窗口.主) {
+    // 首先关闭旧的窗口
+    窗口.主.close();
+  }
 
   // 主窗口
   窗口.主 = new BrowserWindow({
@@ -113,12 +126,27 @@ function 创建窗口(is_flatpak) {
 
     backgroundColor: "#FFF3E0",
     autoHideMenuBar: true,
-    show: false,
 
-    webPreferences: {
-      preload,
-    },
+    webPreferences: getWebPreferences(),
   });
+
+  窗口.主.on("closed", () => {
+    logi(": 主窗口已关闭");
+    窗口.主 = null;
+  });
+
+  const url = 获取加载地址(is_flatpak);
+
+  const u = url + "/index.html";
+  logi(" URL: " + u);
+  窗口.主.loadURL(u);
+}
+
+function 创建窗口0(is_flatpak) {
+  if (null != 窗口.im0) {
+    // 首先关闭旧的窗口
+    窗口.im0.close();
+  }
 
   // im0: 常驻工具条
   窗口.im0 = new BrowserWindow({
@@ -137,16 +165,28 @@ function 创建窗口(is_flatpak) {
     frame: false,
     // 透明窗口
     transparent: true,
-    // 默认隐藏窗口
     //show: false,
 
-    webPreferences: {
-      preload,
-
-      // 默认页面缩放
-      zoomFactor: 1.4,
-    },
+    webPreferences: getWebPreferences(),
   });
+
+  窗口.im0.on("closed", () => {
+    logi(": 窗口 0 已关闭");
+    窗口.im0 = null;
+  });
+
+  const url = 获取加载地址(is_flatpak);
+
+  const u = url + "/im0/index.html";
+  logi(" URL: " + u);
+  窗口.im0.loadURL(u);
+}
+
+function 创建窗口1(is_flatpak) {
+  if (null != 窗口.im1) {
+    // 首先关闭旧的窗口
+    窗口.im1.close();
+  }
 
   // im1: 候选框
   窗口.im1 = new BrowserWindow({
@@ -170,31 +210,32 @@ function 创建窗口(is_flatpak) {
     // 不可获得焦点
     focusable: false,
 
-    webPreferences: {
-      preload,
-
-      // 默认页面缩放
-      zoomFactor: 1.4,
-    },
+    webPreferences: getWebPreferences(),
   });
   // DEBUG
   if (1 == process.env["PMIM_DEBUG"]) {
     窗口.im1.webContents.openDevTools();
   }
 
+  窗口.im1.on("closed", () => {
+    logi(": 窗口 1 已关闭");
+    窗口.im1 = null;
+  });
+
   const url = 获取加载地址(is_flatpak);
 
-  const u1 = url + "/index.html";
-  logi(" URL: " + u1);
-  窗口.主.loadURL(u1);
+  const u = url + "/im1/index.html";
+  logi(" URL: " + u);
+  窗口.im1.loadURL(u);
+}
 
-  const u2 = url + "/im0/index.html";
-  logi(" URL: " + u2);
-  窗口.im0.loadURL(u2);
+function 创建窗口(is_flatpak) {
+  创建窗口0(is_flatpak);
 
-  const u3 = url + "/im1/index.html";
-  logi(" URL: " + u3);
-  窗口.im1.loadURL(u3);
+  // 不启动图形界面
+  if (1 != process.env["PMIM_NU"]) {
+    创建窗口1(is_flatpak);
+  }
 }
 
 // 同时只运行一个实例
@@ -229,7 +270,6 @@ if (!单例) {
     创建窗口(is_flatpak);
   });
 
-  // TODO
   app.on("window-all-closed", () => {
     app.quit();
   });
