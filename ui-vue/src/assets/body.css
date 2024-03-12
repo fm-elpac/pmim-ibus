@@ -1,3 +1,7 @@
 body {
   background-color: #FFF3E0;
 }
+
+html {
+  overflow-y: auto !important;
+}

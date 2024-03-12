@@ -40,7 +40,7 @@ const 窗口 = {
   im1: null,
 };
 
-function 初始化接口() {
+function 初始化接口(is_flatpak) {
   // 获取 electronjs 版本信息
   async function electron_version() {
     return process.versions;
@@ -91,6 +91,14 @@ function 初始化接口() {
     }
   }
 
+  async function 显示主窗口() {
+    if (null != 窗口.主) {
+      窗口.主.show();
+    } else {
+      创建主窗口(is_flatpak);
+    }
+  }
+
   ipcMain.handle("ea:electron_version", electron_version);
   ipcMain.handle("ea:read_token", read_token);
 
@@ -100,6 +108,7 @@ function 初始化接口() {
   ipcMain.handle("ea:窗口隐藏", 窗口隐藏);
   ipcMain.handle("ea:窗口长宽", 窗口长宽);
   ipcMain.handle("ea:窗口位置", 窗口位置);
+  ipcMain.handle("ea:显示主窗口", 显示主窗口);
 }
 
 function getWebPreferences() {
@@ -259,10 +268,11 @@ if (!单例) {
   });
 
   app.whenReady().then(async () => {
-    初始化接口();
+    const is_flatpak = await flatpak.is_flatpak();
+
+    初始化接口(is_flatpak);
 
     // flatpak 初始化
-    const is_flatpak = await flatpak.is_flatpak();
     if (is_flatpak) {
       await flatpak.初始化(获取加载地址);
     }

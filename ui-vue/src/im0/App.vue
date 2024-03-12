@@ -1,4 +1,9 @@
 <script setup>
+import { 显示主窗口 } from "@/api/ea/mod.js";
+
+async function 显示() {
+  await 显示主窗口();
+}
 </script>
 
 <template>
@@ -6,7 +11,12 @@
     <div class="img">
       <img src="@/assets/pmim-logo-512.png" />
     </div>
-    <div class="右">胖喵拼音</div>
+    <div class="右">
+      <span>胖喵拼音</span>
+      <div class="按钮" title="设置" @click="显示">
+        <v-icon icon="mdi-cog-outline" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,5 +55,21 @@
   flex-shrink: 1;
   font-size: 16px;
   margin: 4px 8px;
+
+  display: flex;
+}
+
+.右 span {
+  flex-grow: 1;
+}
+
+.按钮 {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.按钮:hover {
+  opacity: 1;
+  color: rgb(var(--v-theme-primary));
 }
 </style>

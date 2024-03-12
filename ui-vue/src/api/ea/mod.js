@@ -41,3 +41,7 @@ export async function 窗口长宽(w, h) {
 export async function 窗口位置(x, y) {
   return await ea.窗口位置(x, y);
 }
+
+export async function 显示主窗口() {
+  return await ea.显示主窗口();
+}
