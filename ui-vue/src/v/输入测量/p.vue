@@ -2,8 +2,8 @@
 </script>
 
 <template>
-  <div class="v-首页">
-    (首页)
+  <div class="v-输入测量">
+    (输入测量)
   </div>
 </template>
 
