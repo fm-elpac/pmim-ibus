@@ -26,7 +26,7 @@
 
 .c-页面 :deep(h3) {
   margin-top: 1em;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.4em;
 }
 
 .c-页面 :deep(pre) {

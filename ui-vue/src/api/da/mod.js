@@ -49,6 +49,11 @@ export async function pm_li(c, o_id) {
   });
 }
 
+// 获取数据库信息 (ds, du)
+export async function pm_db() {
+  return await da_post("db", 0);
+}
+
 // DEBUG
 window.pm_version = pm_version;
 window.pm_f = pm_f;
@@ -56,3 +61,4 @@ window.pm_commit = pm_commit;
 window.pm_pin_yin = pm_pin_yin;
 window.pm_p2c = pm_p2c;
 window.pm_li = pm_li;
+window.pm_db = pm_db;
