@@ -7,6 +7,12 @@ const flatpak = require("./flatpak.js");
 
 //app.commandLine.appendSwitch("disable-accelerated-video-decode");
 
+// 修复 页面缩放 (origin) 问题
+app.commandLine.appendSwitch(
+  "host-resolver-rules",
+  "MAP *.pmim.test localhost",
+);
+
 const LOGP = "pmim-ibus electronjs";
 
 function logi(t) {
@@ -99,6 +105,29 @@ function 初始化接口(is_flatpak) {
     }
   }
 
+  async function 设置缩放(_, w, z) {
+    switch (w) {
+      // 固定工具条
+      case 0:
+        if (null != 窗口.im0) {
+          窗口.im0.webContents.setZoomFactor(z);
+        }
+        break;
+      // 候选框窗口
+      case 1:
+        if (null != 窗口.im1) {
+          窗口.im1.webContents.setZoomFactor(z);
+        }
+        break;
+      // 主窗口
+      case 2:
+        if (null != 窗口.主) {
+          窗口.主.webContents.setZoomFactor(z);
+        }
+        break;
+    }
+  }
+
   ipcMain.handle("ea:electron_version", electron_version);
   ipcMain.handle("ea:read_token", read_token);
 
@@ -109,6 +138,7 @@ function 初始化接口(is_flatpak) {
   ipcMain.handle("ea:窗口长宽", 窗口长宽);
   ipcMain.handle("ea:窗口位置", 窗口位置);
   ipcMain.handle("ea:显示主窗口", 显示主窗口);
+  ipcMain.handle("ea:设置缩放", 设置缩放);
 }
 
 function getWebPreferences() {
@@ -144,7 +174,16 @@ function 创建主窗口(is_flatpak) {
     窗口.主 = null;
   });
 
-  const url = 获取加载地址(is_flatpak);
+  let url = 获取加载地址(is_flatpak);
+  // 替换域名
+  const t1 = "127.0.0.1:";
+  const t2 = "localhost:";
+  const t = "1.pmim.test:";
+  if (url.includes(t1)) {
+    url = url.split(t1).join(t);
+  } else if (url.includes(t2)) {
+    url = url.split(t2).join(t);
+  }
 
   const u = url + "/index.html";
   logi(" URL: " + u);

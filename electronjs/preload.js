@@ -13,4 +13,5 @@ contextBridge.exposeInMainWorld("pmim_ea", {
   窗口长宽: (w, h) => ipcRenderer.invoke("ea:窗口长宽", w, h),
   窗口位置: (x, y) => ipcRenderer.invoke("ea:窗口位置", x, y),
   显示主窗口: () => ipcRenderer.invoke("ea:显示主窗口"),
+  设置缩放: (w, z) => ipcRenderer.invoke("ea:设置缩放", w, z),
 });

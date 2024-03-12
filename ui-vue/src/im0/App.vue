@@ -1,5 +1,10 @@
 <script setup>
-import { 显示主窗口 } from "@/api/ea/mod.js";
+import { onMounted } from "vue";
+import { 设置缩放, 显示主窗口 } from "@/api/ea/mod.js";
+
+onMounted(async () => {
+  await 设置缩放(0, 1.4);
+});
 
 async function 显示() {
   await 显示主窗口();

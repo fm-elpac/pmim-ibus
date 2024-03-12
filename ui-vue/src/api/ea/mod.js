@@ -45,3 +45,10 @@ export async function 窗口位置(x, y) {
 export async function 显示主窗口() {
   return await ea.显示主窗口();
 }
+
+export async function 设置缩放(w, z) {
+  return await ea.设置缩放(w, z);
+}
+
+// DEBUG
+window._zoom = 设置缩放;
