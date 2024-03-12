@@ -54,6 +54,14 @@ export async function pm_db() {
   return await da_post("db", 0);
 }
 
+// 输入测量 (统计结果)
+export async function pm_m(d, s) {
+  return await da_post("m", {
+    d,
+    s,
+  });
+}
+
 // DEBUG
 window.pm_version = pm_version;
 window.pm_f = pm_f;
@@ -62,3 +70,4 @@ window.pm_pin_yin = pm_pin_yin;
 window.pm_p2c = pm_p2c;
 window.pm_li = pm_li;
 window.pm_db = pm_db;
+window.pm_m = pm_m;

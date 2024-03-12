@@ -22,6 +22,7 @@
 
 .c-页面 :deep(code) {
   background-color: white;
+  word-break: break-word;
 }
 
 .c-页面 :deep(h3) {
