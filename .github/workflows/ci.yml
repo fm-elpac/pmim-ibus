@@ -51,19 +51,12 @@ jobs:
     - run: cd ui-vue && npm run build
 
     - run: mkdir -p flatpak/build_src
-    # pmim-server
-    - uses: robinraju/release-downloader@v1
-      with:
-        repository: "fm-elpac/pmim"
-        tag: "v0.1.1"
-        fileName: "pmim-server.tar.zst"
-    - run: mv pmim-server.tar.zst flatpak/build_src
 
     # deno
     - uses: robinraju/release-downloader@v1
       with:
         repository: "denoland/deno"
-        tag: "v1.41.1"
+        tag: "v1.41.2"
         fileName: "deno-x86_64-unknown-linux-gnu.zip"
     - run: mv deno-x86_64-unknown-linux-gnu.zip flatpak/build_src
 
@@ -71,17 +64,25 @@ jobs:
     - uses: robinraju/release-downloader@v1
       with:
         repository: "electron/electron"
-        tag: "v29.1.0"
-        fileName: "electron-v29.1.0-linux-x64.zip"
-    - run: mv electron-v29.1.0-linux-x64.zip flatpak/build_src
+        tag: "v29.1.1"
+        fileName: "electron-v29.1.1-linux-x64.zip"
+    - run: mv electron-v29.1.1-linux-x64.zip flatpak/build_src/electron.zip
 
     # ibrus
     - uses: robinraju/release-downloader@v1
       with:
         repository: "fm-elpac/librush"
-        tag: "v0.1.0-a1"
+        tag: "v0.1.0-a2"
         fileName: "librush_release_x86_64-unknown-linux-gnu.tar.zst"
     - run: mv librush_release_x86_64-unknown-linux-gnu.tar.zst flatpak/build_src
+
+    # pmim-server
+    - uses: robinraju/release-downloader@v1
+      with:
+        repository: "fm-elpac/pmim"
+        tag: "v0.1.2"
+        fileName: "pmim-server.tar.zst"
+    - run: mv pmim-server.tar.zst flatpak/build_src
 
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:

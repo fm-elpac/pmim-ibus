@@ -1,5 +1,6 @@
 // pmim-ibus/electronjs/flatpak.js
-const { stat, unlink } = require("node:fs/promises");
+const path = require("node:path");
+const { stat, unlink, cp, mkdir } = require("node:fs/promises");
 const { spawn } = require("node:child_process");
 
 const LOGP = "pmim-ibus electronjs flatpak";
@@ -8,18 +9,26 @@ function logi(t) {
   console.log(LOGP + t);
 }
 
-async function is_flatpak() {
-  // flatpak 运行环境 标志文件
-  const F = "/.flatpak-info";
+async function 文件存在(路径) {
   try {
-    await stat(F);
-
-    logi(": in flatpak");
+    await stat(路径);
+    // 文件存在
     return true;
   } catch (e) {
+    // 文件不存在
     // 忽略错误
   }
   return false;
+}
+
+async function is_flatpak() {
+  // flatpak 运行环境 标志文件
+  const F = "/.flatpak-info";
+  const 结果 = await 文件存在(F);
+  if (结果) {
+    logi(": in flatpak");
+  }
+  return 结果;
 }
 
 function sleep(ms) {
@@ -44,6 +53,18 @@ async function 初始化(获取加载地址) {
     await unlink(US);
   } catch (e) {
     console.log(e);
+  }
+
+  // 检查内置数据库
+  const 数据库路径 = path.join(
+    process.env["XDG_CONFIG_HOME"],
+    "pmim/pmim_sys.db",
+  );
+  if (!await 文件存在(数据库路径)) {
+    logi(": 文件不存在 " + 数据库路径);
+    // 复制内置数据库
+    await mkdir(path.dirname(数据库路径), { recursive: true });
+    await cp("/app/pmim_sys-0.db", 数据库路径);
   }
 
   // 启动 deno

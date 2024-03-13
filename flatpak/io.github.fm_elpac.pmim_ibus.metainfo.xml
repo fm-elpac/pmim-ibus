@@ -100,11 +100,11 @@
   </screenshots>
 
   <releases>
-    <release version="0.1.3" date="2024-03-06">
+    <release version="0.1.5" date="2024-03-13">
       <description>
-        <p>Fix flathub translate (2).</p>
-        <p xml:lang="zh">修复 flathub 翻译 (2).</p>
-        <p xml:lang="zh_Hans">修复 flathub 翻译 (2).</p>
+        <p>new: configure ui, input measurement ui, support some shuangpin type.</p>
+        <p xml:lang="zh">新增: 设置界面, 输入测量界面, 支持多种双拼方案</p>
+        <p xml:lang="zh_Hans">新增: 设置界面, 输入测量界面, 支持多种双拼方案</p>
       </description>
     </release>
 
