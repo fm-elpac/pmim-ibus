@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { pm_conf_get, pm_conf_set } from "@/api/da/mod.js";
+import { pm_conf_get, pm_conf_set, pm_ci } from "@/api/da/mod.js";
 import { 双拼方案列表 } from "@/数据/双拼方案/mod.js";
 import { 键盘布局列表 } from "@/数据/键盘布局/mod.js";
 import c页面 from "@/c/页面.vue";
@@ -53,7 +53,50 @@ async function 保存配置() {
   保存失败.value = null;
 
   try {
-    // TODO
+    // 保存 ui 配置
+    const c1 = 配置.value;
+    c1["ui.2p_id"] = 双拼方案id.value;
+    // 用户自定义双拼方案
+    if ("2p_user" == 双拼方案id.value) {
+      // 检查双拼表
+      const 原始 = 自定义双拼表.value;
+      let 数据 = {};
+      try {
+        数据 = JSON.parse(原始);
+      } catch (e) {
+        const 错误信息 = "JSON 格式错误: " + e;
+        throw 错误信息;
+      }
+
+      c1["ui.2pb.user"] = 数据;
+    }
+    c1["ui.kbl_id"] = 键盘布局id.value;
+    // TODO ui.kbl.user
+
+    await pm_conf_set(c1);
+
+    // 保存核心配置
+    const c2 = {
+      "c.2pb": "2p_zirjma",
+      "c.2pb.user": {},
+    };
+    if ("2p_zirjma" != 双拼方案id.value) {
+      if ("2p_user" != 双拼方案id.value) {
+        // 内置方案
+        const 双拼表 = 双拼方案列表.find((x) => x.id == 双拼方案id.value).双拼表;
+        c2["c.2pb.user"] = 双拼表;
+      } else {
+        // 用户自定义双拼方案
+        c2["c.2pb.user"] = c1["ui.2pb.user"];
+      }
+    }
+    await pm_conf_set(c2);
+
+    // 重启核心
+    await pm_ci();
+
+    // 重新加载配置
+    await 加载配置();
 
     保存成功.value = true;
   } catch (e) {
@@ -146,6 +189,26 @@ const 显示双拼键位 = computed(() => {
     </div>
 
     TODO
+
+    <div class="保存按钮">
+      <v-alert v-if="正在保存" type="info" title="正在保存配置并重启核心 .. . " />
+      <v-alert v-if="保存成功" type="success" title="保存成功" closable />
+      <v-alert v-if="null != 保存失败" type="error" title="错误" :text="保存失败" closable />
+
+      <v-btn
+        block
+        size="x-large"
+        color="primary"
+        :disabled="正在保存"
+        @click="保存配置"
+      >
+        <span>保存设置</span>
+
+        <template #append v-if="正在保存">
+          <v-progress-circular indeterminate />
+        </template>
+      </v-btn>
+    </div>
   </c页面>
 </template>
 
@@ -157,5 +220,9 @@ const 显示双拼键位 = computed(() => {
 
 .c-双拼键盘 {
   min-width: 580px;
+}
+
+.保存按钮 .v-alert {
+  margin-bottom: 1em;
 }
 </style>

@@ -72,6 +72,11 @@ export async function pm_conf_set(d) {
   return await da_post("conf_set", d);
 }
 
+// 核心初始化
+export async function pm_ci() {
+  return await da_post("ci", 0);
+}
+
 // DEBUG
 window.pm_version = pm_version;
 window.pm_f = pm_f;
@@ -83,3 +88,4 @@ window.pm_db = pm_db;
 window.pm_m = pm_m;
 window.pm_conf_get = pm_conf_get;
 window.pm_conf_set = pm_conf_set;
+window.pm_ci = pm_ci;
