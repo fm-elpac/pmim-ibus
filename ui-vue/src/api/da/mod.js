@@ -62,6 +62,16 @@ export async function pm_m(d, s) {
   });
 }
 
+// 读取配置项
+export async function pm_conf_get(d) {
+  return await da_post("conf_get", d);
+}
+
+// 保存配置项
+export async function pm_conf_set(d) {
+  return await da_post("conf_set", d);
+}
+
 // DEBUG
 window.pm_version = pm_version;
 window.pm_f = pm_f;
@@ -71,3 +81,5 @@ window.pm_p2c = pm_p2c;
 window.pm_li = pm_li;
 window.pm_db = pm_db;
 window.pm_m = pm_m;
+window.pm_conf_get = pm_conf_get;
+window.pm_conf_set = pm_conf_set;

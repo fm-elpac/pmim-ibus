@@ -60,7 +60,6 @@ const route = useRoute();
         :to="i.to"
         link
         variant="plain"
-        density="comfortable"
       />
     </v-navigation-drawer>
 
