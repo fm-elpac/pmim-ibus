@@ -84,6 +84,14 @@ jobs:
         fileName: "pmim-server.tar.zst"
     - run: mv pmim-server.tar.zst flatpak/build_src
 
+    # pmim-data
+    - uses: robinraju/release-downloader@v1
+      with:
+        repository: "fm-elpac/pmim-data"
+        tag: "v0.1.1"
+        fileName: "pmim_sys-0.db.zst"
+    - run: mv pmim_sys-0.db.zst flatpak/build_src
+
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: pmim_ibus.flatpak
