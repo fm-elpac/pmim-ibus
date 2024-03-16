@@ -116,7 +116,7 @@ modules:
         only-arches: [ "x86_64" ]
         #path: node_modules/electron/dist
         path: ./build_src/electron.zip
-        sha256: 608f1a5cccd69e320eaf13b30c32e4dc213f4f046a4f2b000ae9cf530604f32f
+        sha256: 83a37103b67378a9073898541cfc4af8b5de708da15135f060bf26993ab426b5
 
       # ibrus
       - type: archive
