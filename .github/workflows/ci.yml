@@ -64,9 +64,9 @@ jobs:
     - uses: robinraju/release-downloader@v1
       with:
         repository: "electron/electron"
-        tag: "v29.1.1"
-        fileName: "electron-v29.1.1-linux-x64.zip"
-    - run: mv electron-v29.1.1-linux-x64.zip flatpak/build_src/electron.zip
+        tag: "v29.1.4"
+        fileName: "electron-v29.1.4-linux-x64.zip"
+    - run: mv electron-v29.1.4-linux-x64.zip flatpak/build_src/electron.zip
 
     # ibrus
     - uses: robinraju/release-downloader@v1
