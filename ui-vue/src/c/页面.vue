@@ -25,6 +25,10 @@
   word-break: break-word;
 }
 
+.c-页面 :deep(.v-card code) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .c-页面 :deep(h3) {
   margin-top: 1em;
   margin-bottom: 0.4em;

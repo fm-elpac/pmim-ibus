@@ -33,6 +33,8 @@ A Chinese pinyin input method for ibus.
   > flatpak install flathub io.github.fm_elpac.pmim_ibus
   ```
 
+  推荐使用国内 flathub 镜像: <https://mirror.sjtu.edu.cn/docs/flathub>
+
 - 更新到最新版本:
 
   ```sh

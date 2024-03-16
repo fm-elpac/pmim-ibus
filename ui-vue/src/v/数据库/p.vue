@@ -31,19 +31,29 @@ onMounted(async () => {
 <template>
   <c页面 class="v-数据库">
     <p>数据库相关信息如下:</p>
-    <h3>内置数据库</h3>
-    <p>文件路径: <code>{{ ds文件路径 }}</code></p>
-    <p>名称: <code>{{ ds名称 }}</code></p>
-    <p>创建时间: <code>{{ ds创建时间 }}</code></p>
-    <p>格式版本: <code>{{ ds格式版本 }}</code></p>
 
-    <h3>用户数据库</h3>
-    <p>文件路径: <code>{{ du文件路径 }}</code></p>
-    <p>ULID: <code>{{ du_ulid }}</code></p>
-    <p>创建时间: <code>{{ du创建时间 }}</code></p>
-    <p>格式版本: <code>{{ du格式版本 }}</code></p>
+    <v-card title="内置数据库">
+      <v-card-text>
+        <p>文件路径: <code>{{ ds文件路径 }}</code></p>
+        <p>名称: {{ ds名称 }}</p>
+        <p>创建时间: <code>{{ ds创建时间 }}</code></p>
+        <p>格式版本: <code>{{ ds格式版本 }}</code></p>
+      </v-card-text>
+    </v-card>
+
+    <v-card title="用户数据库">
+      <v-card-text>
+        <p>文件路径: <code>{{ du文件路径 }}</code></p>
+        <p>ULID: <code>{{ du_ulid }}</code></p>
+        <p>创建时间: <code>{{ du创建时间 }}</code></p>
+        <p>格式版本: <code>{{ du格式版本 }}</code></p>
+      </v-card-text>
+    </v-card>
   </c页面>
 </template>
 
 <style scoped>
+.v-card {
+  margin-bottom: 1em;
+}
 </style>

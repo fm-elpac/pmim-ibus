@@ -100,7 +100,7 @@ modules:
       - type: archive
         dest: server
         path: ./build_src/pmim-server.tar.zst
-        sha256: 3f281b7f6bae19732329f2cec6274d93eb02061ed0f870eb1e819a2382ccc9bf
+        sha256: ecc8697cd1a60476ba6e3d1a454b584854aee3e78b22c2699eb6843f6b035e70
 
       # deno
       - type: archive

@@ -119,14 +119,21 @@
   </screenshots>
 
   <releases>
+    <release version="0.1.6" date="2024-03-16">
+      <description>
+        <p>Support a big (3M) dictionary.</p>
+        <p xml:lang="zh">支持 332 万词的大词库</p>
+        <p xml:lang="zh_Hans">支持 332 万词的大词库</p>
+      </description>
+    </release>
+
     <release version="0.1.5" date="2024-03-14">
       <description>
-        <p>new: configure ui, input measurement ui, support some shuangpin type.</p>
+        <p>New: configure ui, input measurement ui, support some shuangpin type.</p>
         <p xml:lang="zh">新增: 设置界面, 输入测量界面, 支持多种双拼方案</p>
         <p xml:lang="zh_Hans">新增: 设置界面, 输入测量界面, 支持多种双拼方案</p>
       </description>
     </release>
-
     <release version="0.1.2" date="2024-03-06">
       <description>
         <p>Fix flathub translate.</p>
@@ -134,7 +141,6 @@
         <p xml:lang="zh_Hans">修复 flathub 翻译.</p>
       </description>
     </release>
-
     <release version="0.1.0" date="2024-03-01">
       <description>
         <p>The first version.</p>
