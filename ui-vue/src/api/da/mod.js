@@ -77,6 +77,11 @@ export async function pm_ci() {
   return await da_post("ci", 0);
 }
 
+// 加载插件列表
+export async function pm_pl() {
+  return await da_post("pl", 0);
+}
+
 // DEBUG
 window.pm_version = pm_version;
 window.pm_f = pm_f;
@@ -89,3 +94,4 @@ window.pm_m = pm_m;
 window.pm_conf_get = pm_conf_get;
 window.pm_conf_set = pm_conf_set;
 window.pm_ci = pm_ci;
+window.pm_pl = pm_pl;

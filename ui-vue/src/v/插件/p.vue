@@ -1,17 +1,38 @@
 <script setup>
+import { computed, ref, onMounted } from "vue";
+import { 加载插件列表 } from "@/插件/mod.js";
 import c页面 from "@/c/页面.vue";
+import c插件 from "./插件.vue";
+
+const 插件列表 = ref([]);
+
+onMounted(async () => {
+  插件列表.value = await 加载插件列表();
+});
+
+const 个数 = computed(() => 插件列表.value.length);
 </script>
 
 <template>
   <c页面 class="v-插件">
-    TODO
+    <v-alert
+      type="warning"
+      title="警告"
+      text="目前对插件并没有足够的安全机制 (权限限制), 所以请不要使用恶意插件 !"
+      closable
+    />
 
-    警告: 目前对插件并没有足够的安全机制 (权限限制),
-    所以请不要使用恶意插件 !
+    <c插件
+      v-for="i in 插件列表"
+      :插件项="i"
+    />
 
-    (插件)
+    <p class="text-medium-emphasis">共有 {{ 个数 }} 个插件.</p>
   </c页面>
 </template>
 
 <style scoped>
+p {
+  margin: 1em 0;
+}
 </style>

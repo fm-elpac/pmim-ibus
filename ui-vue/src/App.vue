@@ -18,27 +18,32 @@ const 列表 = [
   {
     名称: "输入设置",
     图标: "mdi-keyboard-settings-outline",
-    to: "/输入设置",
+    to: "/input_config",
   },
   {
     名称: "个性化",
     图标: "mdi-palette-outline",
-    to: "/个性化",
+    to: "/style",
   },
   {
     名称: "输入测量",
     图标: "mdi-chart-line",
-    to: "/输入测量",
+    to: "/input_m",
   },
   {
     名称: "数据库",
     图标: "mdi-database-outline",
-    to: "/数据库",
+    to: "/db",
+  },
+  {
+    名称: "插件",
+    图标: "mdi-package-variant-closed-plus",
+    to: "/plugin",
   },
   {
     名称: "关于",
     图标: "mdi-information-outline",
-    to: "/关于",
+    to: "/about",
   },
 ];
 
