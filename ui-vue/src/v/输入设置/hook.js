@@ -1,9 +1,28 @@
 import { computed, onMounted, ref } from "vue";
 import { pm_ci, pm_conf_get, pm_conf_set } from "@/api/da/mod.js";
-import { 双拼方案列表 } from "@/数据/双拼方案/mod.js";
-import { 键盘布局列表 } from "@/数据/键盘布局/mod.js";
+import { 加载双拼方案, 加载键盘布局 } from "@/插件/mod.js";
 
 export function use输入设置() {
+  const 双拼方案列表 = ref([
+    {
+      id: "",
+      名称: "(无)",
+      双拼表: {},
+      双拼键位: {
+        声母: {},
+        韵母: {},
+      },
+    },
+  ]);
+  const 键盘布局列表 = ref([]);
+
+  async function 加载插件() {
+    const 双拼 = await 加载双拼方案();
+    双拼方案列表.value = 双拼.concat(双拼方案列表.value);
+
+    键盘布局列表.value = await 加载键盘布局();
+  }
+
   const 配置 = ref({
     "ui.2p_id": null,
     "ui.2pb.user": null,
@@ -80,7 +99,7 @@ export function use输入设置() {
       if ("2p_zirjma" != 双拼方案id.value) {
         if ("2p_user" != 双拼方案id.value) {
           // 内置方案
-          const 双拼表 = 双拼方案列表.find((x) =>
+          const 双拼表 = 双拼方案列表.value.find((x) =>
             x.id == 双拼方案id.value
           ).双拼表;
           c2["c.2pb.user"] = 双拼表;
@@ -108,11 +127,12 @@ export function use输入设置() {
   }
 
   onMounted(async () => {
+    await 加载插件();
     await 加载配置();
   });
 
   const 显示双拼列表 = computed(() => {
-    return [].concat(双拼方案列表.map((i) => ({
+    return [].concat(双拼方案列表.value.map((i) => ({
       title: i.名称,
       value: i.id,
     }))).concat([
@@ -124,14 +144,14 @@ export function use输入设置() {
   });
 
   const 显示键盘布局列表 = computed(() => {
-    return 键盘布局列表.map((i) => ({
+    return 键盘布局列表.value.map((i) => ({
       title: i.名称,
       value: i.id,
     }));
   });
 
   const 显示键盘布局 = computed(() => {
-    const 布局 = 键盘布局列表.find((x) => x.id == 键盘布局id.value);
+    const 布局 = 键盘布局列表.value.find((x) => x.id == 键盘布局id.value);
     if (null != 布局) {
       return 布局.PC;
     } else {
@@ -143,7 +163,7 @@ export function use输入设置() {
   });
 
   const 显示双拼键位 = computed(() => {
-    const 方案 = 双拼方案列表.find((x) => x.id == 双拼方案id.value);
+    const 方案 = 双拼方案列表.value.find((x) => x.id == 双拼方案id.value);
     if (null != 方案) {
       return 方案.双拼键位;
     } else {

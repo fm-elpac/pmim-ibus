@@ -1,7 +1,6 @@
-import { 键盘布局手机_abcd7109 } from "@/数据/键盘布局/abcd7109.js";
-
 // 定义键盘布局 (主键盘): abcd7109
-export const 布局 = 键盘布局手机_abcd7109;
+// TODO
+export const 布局 = [[], [], [], []];
 
 // 数字键盘 布局
 export const 数字布局 = [

@@ -47,6 +47,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/pmims_api/": "http://127.0.0.1:20200",
+      "/plugin/": "http://127.0.0.1:20200",
     },
   },
 });

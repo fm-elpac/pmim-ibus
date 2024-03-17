@@ -66,6 +66,11 @@ A Chinese pinyin input method for ibus.
   - <https://zhuanlan.zhihu.com/p/686059329>
   - <https://juejin.cn/post/7344245471349096460>
 
+- 《多种双拼方案的实现》
+  - <https://www.bilibili.com/read/cv33242158/>
+  - <https://zhuanlan.zhihu.com/p/687090245>
+  - <https://juejin.cn/post/7346102009491439654>
+
 ## LICENSE
 
 GNU General Public License v3.0 or later (SPDX Identifier: `GPL-3.0-or-later`)
