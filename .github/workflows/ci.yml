@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - run: dnf -y install npm
+    - run: dnf -y install npm make
 
     # build
     - run: make build
