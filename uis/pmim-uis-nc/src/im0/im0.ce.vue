@@ -11,7 +11,7 @@ const p = defineProps({
 
 const emit = defineEmits(["加载", "显示主窗口"]);
 
-onMounted(() => emit("加载", 666));
+onMounted(() => emit("加载"));
 
 function 显示() {
   emit("显示主窗口");

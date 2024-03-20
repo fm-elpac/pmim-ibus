@@ -160,7 +160,7 @@ function 创建主窗口(is_flatpak) {
 
   // 主窗口
   窗口.主 = new BrowserWindow({
-    width: 400,
+    width: 800,
     height: 700,
 
     backgroundColor: "#FFF3E0",

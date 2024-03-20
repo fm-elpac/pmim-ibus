@@ -58,7 +58,7 @@ export async function 加载插件列表_启用() {
 // 加载启用的插件列表
 export async function 加载启用插件列表() {
   const o = await 加载插件列表_启用();
-  return o.filter(1 == o.启用);
+  return o.filter((i) => 1 == i.启用);
 }
 
 export async function 加载插件json(插件id, 路径) {

@@ -1,28 +1,32 @@
 <script setup>
 // pmim-uis-nc-im1: PC 候选框窗口
-import { ref } from "vue";
-//import { fixVuetify } from "../util/fixVuetify.js";
-//fixVuetify();
+import { onMounted } from "vue";
 import c候选框 from "./候选框/候选框.vue";
 
-// TODO
-const 页码 = ref(0);
-const 总页数 = ref(0);
-const 拼音上 = ref("");
-const 拼音下 = ref("");
-const 候选 = ref([]);
+const p = defineProps({
+  "data-ce": String,
+
+  页码: Number,
+  总页数: Number,
+  拼音上: String,
+  拼音下: Array,
+  候选: Array,
+});
+
+const emit = defineEmits(["加载"]);
+
+onMounted(() => emit("加载"));
 </script>
 
 <template>
-  <div class="pmim-uis-nc-im1">
-    <c候选框
-      :页码="页码"
-      :总页数="总页数"
-      :拼音上="拼音上"
-      :拼音下="拼音下"
-      :候选="候选"
-    />
-  </div>
+  <c候选框
+    class="pmim-uis-nc-im1"
+    :页码="p.页码"
+    :总页数="p.总页数"
+    :拼音上="p.拼音上"
+    :拼音下="p.拼音下"
+    :候选="p.候选"
+  />
 </template>
 
 <style scoped>
