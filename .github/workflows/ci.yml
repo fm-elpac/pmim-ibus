@@ -19,6 +19,10 @@ jobs:
 
     # ui-vue/
     - run: cd ui-vue && npm install
+    # patch node_modules/@mdi/font/css/
+    - run: cd ui-vue/node_modules/@mdi/font/css && patch -p2 < ../../../../../uis/patch/1.patch
+    - run: deno run -A uis/patch/fix_font_name.js ui-vue/node_modules/@mdi/font/css/materialdesignicons.css pmim-ui
+
     - run: cd ui-vue && npm run build
 
     # build lo
@@ -34,6 +38,39 @@ jobs:
       with:
         name: ui-vue-dist
         path: ui-vue-dist.tar.zst
+
+    # uis/pmim-uis-nc
+    - run: cd uis/pmim-uis-nc && npm install
+    # patch node_modules/@mdi/font/css/
+    - run: cd uis/pmim-uis-nc/node_modules/@mdi/font/css && patch -p2 < ../../../../../patch/2.patch
+    - run: deno run -A uis/patch/fix_font_name.js uis/pmim-uis-nc/node_modules/@mdi/font/css/materialdesignicons.css pmim-uis-nc
+
+    - run: cd uis/pmim-uis-nc && npm run build
+    - run: cp uis/pmim-uis-nc/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2 uis/pmim-uis-nc/dist
+    - run: deno run -A uis/patch/fix_css_font.js uis/pmim-uis-nc/dist/style.css
+
+    # TODO
+    # uis/pmim-uis-bl
+    #- run: cd uis/pmim-uis-bl && npm install
+    # patch node_modules/@mdi/font/css/
+    #- run: cd uis/pmim-uis-bl/node_modules/@mdi/font/css && patch -p2 < ../../../../../patch/2.patch
+    #- run: deno run -A uis/patch/fix_font_name.js uis/pmim-uis-bl/node_modules/@mdi/font/css/materialdesignicons.css pmim-uis-bl
+
+    #- run: cd uis/pmim-uis-bl && npm run build
+    #- run: cp uis/pmim-uis-bl/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2 uis/pmim-uis-bl/dist
+    #- run: deno run -A uis/patch/fix_css_font.js uis/pmim-uis-bl/dist/style.css
+
+    # plugin
+    - run: mkdir -p plugin/pmim-uis-nc/static && cp -r uis/pmim-uis-nc/dist/* plugin/pmim-uis-nc/static
+    #- run: mkdir -p plugin/pmim-uis-bl/static && cp -r uis/pmim-uis-bl/dist/* plugin/pmim-uis-bl/static
+
+    - run: |
+        tar --zstd -cvf pmim-plugin.tar.zst \
+        plugin
+    - uses: actions/upload-artifact@v4
+      with:
+        name: pmim-plugin
+        path: pmim-plugin.tar.zst
 
   flatpak:
     needs: build

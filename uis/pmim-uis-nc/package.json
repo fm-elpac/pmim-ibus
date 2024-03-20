@@ -1,12 +1,11 @@
 {
-  "name": "pmim-ibus-ui-vue",
+  "name": "pmim-uis-nc",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
@@ -20,8 +19,6 @@
     "sass": "^1.72.0",
     "unplugin-fonts": "^1.1.1",
     "vite": "^5.1.6",
-    "vite-plugin-vuetify": "^2.0.3",
-    "webpack": "^5.90.3",
-    "webpack-cli": "^5.1.4"
+    "vite-plugin-vuetify": "^2.0.3"
   }
 }

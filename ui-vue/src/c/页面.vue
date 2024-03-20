@@ -44,4 +44,16 @@
 .c-页面 :deep(ul) {
   padding-left: 1.2em;
 }
+
+.c-页面 :deep(hr) {
+  margin: 1em 0;
+}
+
+.c-页面 :deep(img) {
+  max-width: 100%;
+  height: auto;
+  max-height: 700px;
+  display: block;
+  margin: 0 auto 1em auto;
+}
 </style>

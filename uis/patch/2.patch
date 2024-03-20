@@ -1,0 +1,12 @@
+diff '--color=auto' -ru tmp/0/materialdesignicons.css tmp/2/materialdesignicons.css
+--- tmp/0/materialdesignicons.css	2024-03-20 15:18:08.264132544 +0800
++++ tmp/2/materialdesignicons.css	2024-03-20 15:20:00.784062762 +0800
+@@ -1,8 +1,6 @@
+ /* MaterialDesignIcons.com */
+ @font-face {
+   font-family: "Material Design Icons";
+-  src: url("../fonts/materialdesignicons-webfont.eot?v=7.4.47");
+-  src: url("../fonts/materialdesignicons-webfont.eot?#iefix&v=7.4.47") format("embedded-opentype"), url("../fonts/materialdesignicons-webfont.woff2?v=7.4.47") format("woff2"), url("../fonts/materialdesignicons-webfont.woff?v=7.4.47") format("woff"), url("../fonts/materialdesignicons-webfont.ttf?v=7.4.47") format("truetype");
+   font-weight: normal;
+   font-style: normal;
+ }
