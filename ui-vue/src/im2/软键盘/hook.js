@@ -1,5 +1,5 @@
 import { computed, onMounted, ref, watch } from "vue";
-import { 默认符号列表 } from "../c/键盘/键盘布局.js";
+import { 默认符号列表 } from "./符号.js";
 import { 适配a } from "../../输入/a/mod.js";
 import {
   aa_发送键_回车,

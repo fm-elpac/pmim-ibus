@@ -1,7 +1,7 @@
 <script setup>
 // 渲染软键盘: 负责提供数据, 渲染软键盘界面
 import { use输入 } from "./hook.js";
-import c软键盘 from "./软键盘.vue";
+import c皮肤 from "@/c/皮肤.js";
 
 const {
   拼音,
@@ -19,7 +19,8 @@ const {
 </script>
 
 <template>
-  <c软键盘
+  <c皮肤
+    能力="im2"
     :拼音="拼音"
     :键盘="键盘"
     :符号列表="符号列表"
