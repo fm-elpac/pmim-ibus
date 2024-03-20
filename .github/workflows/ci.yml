@@ -17,56 +17,19 @@ jobs:
 
     - run: deno fmt --check
 
-    # ui-vue/
-    - run: cd ui-vue && npm install
-    # patch node_modules/@mdi/font/css/
-    - run: cd ui-vue/node_modules/@mdi/font/css && patch -p2 < ../../../../../uis/patch/1.patch
-    - run: deno run -A uis/patch/fix_font_name.js ui-vue/node_modules/@mdi/font/css/materialdesignicons.css pmim-ui
+    # build
+    - run: make build
 
-    - run: cd ui-vue && npm run build
-
-    # build lo
-    - run: cd ui-vue/dist && ln -s assets/lo1-*.js lo1.js
-    - run: cd ui-vue && npx webpack
-    - run: rm ui-vue/dist/lo1.js
-    - run: cd ui-vue && deno run --allow-read lo/fix.js dist/lo1/index.html > dist/lo/index.html
-
-    - run: |
-        tar --zstd -cvf ui-vue-dist.tar.zst \
-        ui-vue/dist
+    - run: tar --zstd -cvf ui-vue-dist.tar.zst ui-vue/dist
     - uses: actions/upload-artifact@v4
       with:
         name: ui-vue-dist
         path: ui-vue-dist.tar.zst
 
-    # uis/pmim-uis-nc
-    - run: cd uis/pmim-uis-nc && npm install
-    # patch node_modules/@mdi/font/css/
-    - run: cd uis/pmim-uis-nc/node_modules/@mdi/font/css && patch -p2 < ../../../../../patch/2.patch
-    - run: deno run -A uis/patch/fix_font_name.js uis/pmim-uis-nc/node_modules/@mdi/font/css/materialdesignicons.css pmim-uis-nc
-
-    - run: cd uis/pmim-uis-nc && npm run build
-    - run: cp uis/pmim-uis-nc/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2 uis/pmim-uis-nc/dist
-    - run: deno run -A uis/patch/fix_css_font.js uis/pmim-uis-nc/dist/style.css
-
-    # TODO
-    # uis/pmim-uis-bl
-    #- run: cd uis/pmim-uis-bl && npm install
-    # patch node_modules/@mdi/font/css/
-    #- run: cd uis/pmim-uis-bl/node_modules/@mdi/font/css && patch -p2 < ../../../../../patch/2.patch
-    #- run: deno run -A uis/patch/fix_font_name.js uis/pmim-uis-bl/node_modules/@mdi/font/css/materialdesignicons.css pmim-uis-bl
-
-    #- run: cd uis/pmim-uis-bl && npm run build
-    #- run: cp uis/pmim-uis-bl/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2 uis/pmim-uis-bl/dist
-    #- run: deno run -A uis/patch/fix_css_font.js uis/pmim-uis-bl/dist/style.css
-
     # plugin
-    - run: mkdir -p plugin/pmim-uis-nc/static && cp -r uis/pmim-uis-nc/dist/* plugin/pmim-uis-nc/static
-    #- run: mkdir -p plugin/pmim-uis-bl/static && cp -r uis/pmim-uis-bl/dist/* plugin/pmim-uis-bl/static
+    - run: make plugin
 
-    - run: |
-        tar --zstd -cvf pmim-plugin.tar.zst \
-        plugin
+    - run: tar --zstd -cvf pmim-plugin.tar.zst plugin
     - uses: actions/upload-artifact@v4
       with:
         name: pmim-plugin
@@ -83,9 +46,9 @@ jobs:
 
     - run: dnf -y install npm
 
-    # build (ui-vue/dist)
-    - run: cd ui-vue && npm install
-    - run: cd ui-vue && npm run build
+    # build
+    - run: make build
+    - run: make plugin
 
     - run: mkdir -p flatpak/build_src
 

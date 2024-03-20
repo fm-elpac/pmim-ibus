@@ -9,8 +9,20 @@
   "默认启用": 1,
 
   "皮肤": {
-    "入口": "main.js",
+    "入口": "pmim-uis-nc.js",
     "名称": "pmim-uis-nc",
-    "能力": ["im0", "im1", "im2", "conf"]
+    "能力": ["im0", "im1", "im2", "conf"],
+
+    "css": ["style.css"],
+    "fontface": [
+      {
+        "family": "pmim-uis-nc Material Design Icons",
+        "src": "url(\"static/materialdesignicons-webfont.woff2?v=7.4.47\") format(\"woff2\")",
+        "desc": {
+          "weight": "normal",
+          "style": "normal"
+        }
+      }
+    ]
   }
 }

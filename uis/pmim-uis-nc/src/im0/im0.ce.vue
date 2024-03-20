@@ -1,14 +1,25 @@
 <script setup>
 // pmim-uis-nc-im0: PC 固定工具条界面
+import { onMounted } from "vue";
 import { fixVuetify } from "../util/fixVuetify.js";
 // 首先执行修复
 fixVuetify();
 
-const emit = defineEmits(["显示主窗口"]);
+const p = defineProps({
+  "data-ce": String,
+});
+
+const emit = defineEmits(["加载", "显示主窗口"]);
+
+onMounted(() => emit("加载", 666));
 
 function 显示() {
   emit("显示主窗口");
 }
+
+// DEBUG
+console.log("pmim-uis-nc im0 setup");
+console.log(p.dataCe);
 </script>
 
 <template>

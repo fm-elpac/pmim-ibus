@@ -8,7 +8,12 @@ import c页面 from "@/c/页面.vue";
     <h2>胖喵拼音输入法 (ui-vue)</h2>
     <p>版本号 <code>{{ P_VERSION }}</code></p>
     <p>项目网址: <code>https://github.com/fm-elpac/pmim-ibus</code></p>
+    <div class="logo">
+      <img src="@/assets/pmim-logo-512.png" />
+    </div>
+
     <p>正式名称: 紫腹巨蚊 (Toxorhynchites gravelyi) 系列 琼氏圆筛藻 (Coscinodiscus jonesianus) 软件</p>
+
     <p>镜像:</p>
     <p>
       <ul>

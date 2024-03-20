@@ -11,28 +11,46 @@ const 描述URL = computed(() => p.插件项.描述.插件信息.URL);
 const 版本 = computed(() => p.插件项.描述.插件信息.版本);
 const 路径 = computed(() => p.插件项.描述文件);
 const 内置 = computed(() => 1 == p.插件项.内置);
+const 启用 = computed(() => 1 == p.插件项.启用);
 </script>
 
 <template>
   <div class="c-插件">
-    <v-card :title="名称">
+    <v-card>
+      <v-card-title>
+        <span title="已启用">
+          <v-chip
+            v-if="启用"
+            class="r"
+            color="primary"
+            variant="outlined"
+          >已启用</v-chip>
+        </span>
+        <span title="名称">{{ 名称 }}</span>
+      </v-card-title>
+      <v-card-subtitle>
+        <span title="描述">{{ 描述 }}</span>
+      </v-card-subtitle>
       <v-card-text>
         <p>
-          <v-chip
-            v-if="内置"
-            class="r"
-            color="blue"
-            variant="flat"
-            size="small"
-          >内置</v-chip>
-          <span>{{ 描述 }}</span>
+          <span title="版本号">
+            <v-chip size="small">{{ 版本 }}</v-chip>
+          </span>
+
+          <span class="l" title="URL">
+            <span class="text-medium-emphasis">{{ 描述URL }}</span>
+          </span>
         </p>
-        <p class="text-medium-emphasis"><span>URL: </span><span>{{ 描述URL }}</span></p>
-        <p>
-          <span class="s r">版本:</span>
-          <v-chip size="small">{{ 版本 }}</v-chip>
-          <span class="s l">
-            <span>路径:</span> <code>{{ 路径 }}</code>
+        <p class="s">
+          <span
+            v-if="内置"
+            title="内置"
+          >
+            <v-chip color="blue" variant="flat" size="small">内置</v-chip>
+          </span>
+
+          <span class="l" title="路径">
+            <code>{{ 路径 }}</code>
           </span>
         </p>
       </v-card-text>
@@ -53,11 +71,11 @@ const 内置 = computed(() => 1 == p.插件项.内置);
   opacity: 0.8;
 }
 
-.r {
-  margin-right: 0.4em;
+.l {
+  margin-left: 0.8em;
 }
 
-.l {
-  margin-left: 1em;
+.r {
+  margin-right: 0.8em;
 }
 </style>
