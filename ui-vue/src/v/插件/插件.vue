@@ -78,4 +78,9 @@ const 启用 = computed(() => 1 == p.插件项.启用);
 .r {
   margin-right: 0.8em;
 }
+
+.c-插件 :deep(.v-card-title),
+.c-插件 :deep(.v-card-subtitle) {
+  white-space: normal;
+}
 </style>

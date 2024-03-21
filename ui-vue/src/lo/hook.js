@@ -45,7 +45,15 @@ async function 检查() {
 
   // 服务器已成功启动
   // 加载页面
-  const 加载URL = `http://127.0.0.1:${p}/im2/index.html`;
+  let 加载URL = `http://127.0.0.1:${p}/im2/index.html`;
+
+  // 检查加载目标
+  logi(" hash: " + window.location.hash);
+  if ("#m" == window.location.hash) {
+    // 加载主界面
+    加载URL = `http://127.0.0.1:${p}/index.html`;
+  }
+
   logi(加载URL);
   window.location = 加载URL;
 

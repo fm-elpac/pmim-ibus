@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from "vue";
+import { aa可用 } from "@/api/aa/mod.js";
 import { use输入设置 } from "./hook.js";
 import c页面 from "@/c/页面.vue";
 import c文本区域 from "@/c/文本区域.vue";
@@ -20,6 +22,8 @@ const {
 
   保存配置,
 } = use输入设置();
+
+const 键盘布局显示 = computed(() => aa可用() ? "键盘布局" : "键盘布局 (仅供显示)");
 </script>
 
 <template>
@@ -43,9 +47,9 @@ const {
 
       <p v-if="双拼方案id != '2p_user'">
         <v-select
-          label="键盘布局 (仅供显示)"
           variant="solo"
           v-model="键盘布局id"
+          :label="键盘布局显示"
           :items="显示键盘布局列表"
         />
       </p>

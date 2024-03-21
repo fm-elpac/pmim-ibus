@@ -53,7 +53,7 @@ export function use输入设置() {
     if (null != pb_user) {
       自定义双拼表.value = JSON.stringify(pb_user, "", "  ");
     } else {
-      const 示例 = 双拼方案列表.find((x) => x.id == "2p_zirjma").双拼表;
+      const 示例 = 双拼方案列表.value.find((x) => x.id == "2p_zirjma").双拼表;
       自定义双拼表.value = JSON.stringify(示例, "", "  ");
     }
   }
@@ -97,6 +97,8 @@ export function use输入设置() {
         "c.2pb.user": {},
       };
       if ("2p_zirjma" != 双拼方案id.value) {
+        c2["c.2pb"] = "2p_user";
+
         if ("2p_user" != 双拼方案id.value) {
           // 内置方案
           const 双拼表 = 双拼方案列表.value.find((x) =>

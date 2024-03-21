@@ -1,13 +1,16 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
 import { 加载插件列表_启用 } from "@/插件/mod.js";
+import { 插件排序 } from "./util.js";
 import c页面 from "@/c/页面.vue";
 import c插件 from "./插件.vue";
 
 const 插件列表 = ref([]);
 
 onMounted(async () => {
-  插件列表.value = await 加载插件列表_启用();
+  const a = await 加载插件列表_启用();
+  a.sort(插件排序);
+  插件列表.value = a;
 });
 
 const 个数 = computed(() => 插件列表.value.length);

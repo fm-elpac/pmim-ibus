@@ -22,7 +22,7 @@
 
 .c-页面 :deep(code) {
   background-color: white;
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .c-页面 :deep(.v-card code) {
