@@ -1,4 +1,23 @@
+import { pm_conf_get } from "@/api/da/mod.js";
+import { 加载启用插件列表 } from "../插件/mod.js";
+
 export const 配置项_皮肤 = "ui.s";
+
+export async function 加载皮肤配置() {
+  const c = await pm_conf_get([配置项_皮肤]);
+  return c[配置项_皮肤];
+}
+
+export async function 加载皮肤列表() {
+  const o = await 加载启用插件列表();
+  return o.filter((i) => null != i.描述.皮肤);
+}
+
+export async function 设置皮肤(id) {
+  await pm_conf_set({
+    [配置项_皮肤]: id,
+  });
+}
 
 export function onLoad(e) {
   return new Promise((resolve, reject) => {

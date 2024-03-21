@@ -1,5 +1,11 @@
 <script setup>
+import { onMounted } from "vue";
+import { 初始化页面刷新 } from "@/api/da/mod.js";
 import c渲染软键盘 from "./软键盘/渲染软键盘.vue";
+
+onMounted(async () => {
+  await 初始化页面刷新();
+});
 </script>
 
 <template>

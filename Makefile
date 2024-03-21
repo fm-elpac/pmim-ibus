@@ -2,11 +2,11 @@
 
 # 完整的编译过程
 .PHONY: build
-build: install_patch build_ui build_lo build_uis_nc
+build: install_patch build_ui build_lo build_uis_nc build_uis_bl
 
 # npm install 并且修改依赖的代码
 .PHONY: install_patch
-install_patch: install_patch_ui install_patch_uis_nc
+install_patch: install_patch_ui install_patch_uis_nc install_patch_uis_bl
 
 .PHONY: install_patch_ui
 install_patch_ui:
@@ -53,8 +53,4 @@ build_uis_bl:
 .PHONY: plugin
 plugin:
 	mkdir -p plugin/pmim-uis-nc/static && cp -r uis/pmim-uis-nc/dist/* plugin/pmim-uis-nc/static
-
-# TODO
-# mkdir -p plugin/pmim-uis-bl/static && cp -r uis/pmim-uis-bl/dist/* plugin/pmim-uis-bl/static
-
-# TODO
+	mkdir -p plugin/pmim-uis-bl/static && cp -r uis/pmim-uis-bl/dist/* plugin/pmim-uis-bl/static

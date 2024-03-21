@@ -1,5 +1,5 @@
 import { computed, onMounted, ref } from "vue";
-import { pm_ci, pm_conf_get, pm_conf_set } from "@/api/da/mod.js";
+import { pm_ci, pm_conf_get, pm_conf_set, 发送页面刷新 } from "@/api/da/mod.js";
 import { 加载双拼方案, 加载键盘布局 } from "@/插件/mod.js";
 
 export function use输入设置() {
@@ -121,6 +121,8 @@ export function use输入设置() {
 
       // 重新加载配置
       await 加载配置();
+
+      await 发送页面刷新();
 
       保存成功.value = true;
     } catch (e) {

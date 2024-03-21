@@ -1,7 +1,6 @@
 import { onMounted, ref } from "vue";
-import { pm_conf_get } from "@/api/da/mod.js";
 import { 加载插件列表_启用 } from "../插件/mod.js";
-import { onLoad, 加载2, 加载js, 配置项_皮肤 } from "./util.js";
+import { onLoad, 加载2, 加载js, 加载皮肤配置 } from "./util.js";
 
 export function 使用皮肤(能力) {
   const 已加载 = ref(false);
@@ -14,8 +13,7 @@ export function 使用皮肤(能力) {
 
   onMounted(async () => {
     const 插件列表 = await 加载插件列表_启用();
-    const c = await pm_conf_get([配置项_皮肤]);
-    const 皮肤 = c[配置项_皮肤];
+    const 皮肤 = await 加载皮肤配置();
     // 检查用户设置的皮肤
     if (null != 皮肤) {
       const 插件 = 插件列表.find((i) => 皮肤 == i.id);
