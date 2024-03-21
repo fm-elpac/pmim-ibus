@@ -15,6 +15,9 @@ export async function 更新口令() {
     etc.口令 = await 读口令();
   } else if (aa可用()) {
     etc.口令 = aa_口令();
+  } else {
+    // DEBUG
+    etc.口令 = sessionStorage.getItem("_token");
   }
 }
 
@@ -88,4 +91,5 @@ window.da_post = da_post;
 // DEBUG
 window._set_token = (t) => {
   etc.口令 = t;
+  sessionStorage.setItem("_token", t);
 };

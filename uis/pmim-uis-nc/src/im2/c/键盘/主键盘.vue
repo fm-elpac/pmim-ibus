@@ -1,6 +1,5 @@
 <script setup>
-import { ref, provide } from "vue";
-import { 布局 } from "./键盘布局.js";
+import { ref, provide, inject, computed } from "vue";
 import c键盘框架 from "./键盘框架.vue";
 import c键盘行 from "./键盘行.vue";
 import c按键0 from "./按键/按键0.vue";
@@ -23,41 +22,39 @@ function 按shift() {
 
 provide("shift", shift);
 provide("按shift", 按shift);
+
+const 键盘布局 = inject("键盘布局");
+const 布局 = computed(() => 键盘布局.value.手机);
+const 行7 = computed(() => 布局.value.findIndex(i => 7 == i.length));
 </script>
 
 <template>
   <c键盘框架 class="c-主键盘">
-    <c键盘行>
-      <c上挡键 class="w15" v-if="p.英文" />
-      <c清除键 class="w15" v-else />
+    <template v-for="i in [0, 1, 2]">
+      <c键盘行 v-if="i == 行7">
+        <c上挡键 class="w15" v-if="p.英文" />
+        <c清除键 class="w15" v-else />
 
-      <c按键0
-        v-for="i in 布局[0]"
-        class="w10"
-        类型="t"
-        :文本="i[0]"
-        :文本2="i[1]"
-      />
-      <c退格键 class="w15" />
-    </c键盘行>
-    <c键盘行>
-      <c按键0
-        v-for="i in 布局[1]"
-        class="w10"
-        类型="t"
-        :文本="i[0]"
-        :文本2="i[1]"
-      />
-    </c键盘行>
-    <c键盘行>
-      <c按键0
-        v-for="i in 布局[2]"
-        class="w10"
-        类型="t"
-        :文本="i[0]"
-        :文本2="i[1]"
-      />
-    </c键盘行>
+        <c按键0
+          v-for="j in 布局[i]"
+          class="w10"
+          类型="t"
+          :文本="j[0]"
+          :文本2="j[1]"
+        />
+        <c退格键 class="w15" />
+      </c键盘行>
+      <c键盘行 v-if="i != 行7">
+        <c按键0
+          v-for="j in 布局[i]"
+          class="w10"
+          类型="t"
+          :文本="j[0]"
+          :文本2="j[1]"
+        />
+      </c键盘行>
+    </template>
+
     <c键盘行>
       <c按键0
         class="w10"

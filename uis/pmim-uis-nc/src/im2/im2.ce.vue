@@ -10,6 +10,8 @@ import c软键盘 from "./软键盘/软键盘.vue";
 const p = defineProps({
   "data-ce": String,
 
+  双拼方案: Object,
+  键盘布局: Object,
   拼音: Boolean,
   键盘: String,
   符号列表: Array,
@@ -43,6 +45,8 @@ function 输入(n) {
 <template>
   <c软键盘
     class="pmim-uis-nc-im2"
+    :双拼方案="p.双拼方案"
+    :键盘布局="p.键盘布局"
     :拼音="p.拼音"
     :键盘="p.键盘"
     :符号列表="p.符号列表"

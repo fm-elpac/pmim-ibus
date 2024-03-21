@@ -5,6 +5,12 @@ import { pm_conf_get, pm_conf_set, pm_pl } from "@/api/da/mod.js";
 const CONF_PLUGIN_EL = "plugin.el";
 // 配置项: 用户禁用的插件的列表 `[""]`
 const CONF_PLUGIN_DL = "plugin.dl";
+// 配置项: 用户设置的双拼方案
+const CONF_2P_ID = "ui.2p_id";
+// 配置项: 用户设置的键盘布局
+const CONF_KBL_ID = "ui.kbl_id";
+// 配置项: 用户自定义的键盘布局
+const CONF_KBL_USER = "ui.kbl.user";
 
 // 加载所有插件的列表
 export async function 加载插件列表() {
@@ -99,4 +105,60 @@ export async function 加载键盘布局() {
     }
   }
   return [].concat(...o);
+}
+
+// 适用于手机软键盘
+export async function 加载双拼方案和键盘布局() {
+  const 键盘布局 = await 加载键盘布局();
+  const 双拼方案 = await 加载双拼方案();
+
+  // 加载配置项
+  const c = await pm_conf_get([CONF_2P_ID, CONF_KBL_ID, CONF_KBL_USER]);
+
+  // 默认键盘布局
+  const 默认布局 = "abcd7109";
+  let 布局 = {
+    id: "",
+    名称: "",
+    PC: {
+      偏移: [],
+      键位: [[], [], []],
+    },
+    手机: [[], [], [], []],
+  };
+  if (("user" == c[CONF_KBL_ID]) && (null != c[CONF_KBL_USER])) {
+    // 用户自定义键盘布局
+    布局 = c[CONF_KBL_USER];
+  } else if (
+    null != c[CONF_KBL_ID] &&
+    (null != 键盘布局.find((i) => c[CONF_KBL_ID] == i.id))
+  ) {
+    // 用户设置的键盘布局
+    布局 = 键盘布局.find((i) => c[CONF_KBL_ID] == i.id);
+  } else if (null != 键盘布局.find((i) => 默认布局 == i.id)) {
+    // 默认键盘布局
+    布局 = 键盘布局.find((i) => 默认布局 == i.id);
+  } else if (键盘布局.length > 0) {
+    // 使用第一个可用布局
+    布局 = 键盘布局[0];
+  }
+
+  // 双拼方案
+  let 双拼 = {
+    id: "",
+    名称: "",
+    双拼表: {},
+    双拼键位: {
+      声母: {},
+      韵母: {},
+    },
+  };
+  if (
+    (null != c[CONF_2P_ID]) &&
+    (null != 双拼方案.find((i) => c[CONF_2P_ID] == i.id))
+  ) {
+    双拼 = 双拼方案.find((i) => c[CONF_2P_ID] == i.id);
+  }
+
+  return [布局, 双拼];
 }

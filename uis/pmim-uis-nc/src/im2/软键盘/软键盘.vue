@@ -5,6 +5,8 @@ import c顶栏 from "../c/顶栏/顶栏.vue";
 import c键盘 from "../c/键盘/键盘.vue";
 
 const p = defineProps({
+  双拼方案: Object,
+  键盘布局: Object,
   // 是否处于 拼音模式
   拼音: Boolean,
   // 当前显示的键盘
@@ -39,12 +41,16 @@ function 输入(n) {
   emit("输入", n);
 }
 
+const 双拼方案 = computed(() => p.双拼方案);
+const 键盘布局 = computed(() => p.键盘布局);
 const 符号列表 = computed(() => p.符号列表);
 const 扩展列表 = computed(() => p.扩展列表);
 const 拼音上 = computed(() => p.拼音上);
 const 拼音下 = computed(() => p.拼音下);
 const 候选 = computed(() => p.候选);
 
+provide("双拼方案", 双拼方案);
+provide("键盘布局", 键盘布局);
 provide("符号列表", 符号列表);
 provide("扩展列表", 扩展列表);
 provide("拼音上", 拼音上);

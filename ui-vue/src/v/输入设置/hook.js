@@ -56,6 +56,10 @@ export function use输入设置() {
       const 示例 = 双拼方案列表.value.find((x) => x.id == "2p_zirjma").双拼表;
       自定义双拼表.value = JSON.stringify(示例, "", "  ");
     }
+    const kbl_id = 配置.value["ui.kbl_id"];
+    if (null != kbl_id) {
+      键盘布局id.value = kbl_id;
+    }
   }
 
   const 正在保存 = ref(false);
