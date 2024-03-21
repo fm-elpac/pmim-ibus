@@ -91,34 +91,55 @@
 
   <screenshots>
     <screenshot type="default">
-      <!-- https://github.com/fm-elpac/pmim-ibus/blob/8ba498380c67705fa63fa45570ee299fddb72e5b/flatpak/img/20240301-ui-im1.png -->
-      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@8ba498380c67705fa63fa45570ee299fddb72e5b/flatpak/img/20240301-ui-im1.png</image>
-      <caption>input window</caption>
-      <caption xml:lang="zh">候选框窗口</caption>
-      <caption xml:lang="zh_Hans">候选框窗口</caption>
+      <!-- https://github.com/fm-elpac/pmim-ibus/blob/bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im1.png -->
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im1.png</image>
+      <caption>input window (orange skin)</caption>
+      <caption xml:lang="zh">候选框窗口 (暖橙 皮肤)</caption>
+      <caption xml:lang="zh_Hans">候选框窗口 (暖橙 皮肤)</caption>
     </screenshot>
 
     <screenshot>
-      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@8ba498380c67705fa63fa45570ee299fddb72e5b/flatpak/img/20240314-ui-2p.png</image>
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im1-b.png</image>
+      <caption>input window (blue skin)</caption>
+      <caption xml:lang="zh">候选框窗口 (冰蓝 皮肤)</caption>
+      <caption xml:lang="zh_Hans">候选框窗口 (冰蓝 皮肤)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im0.png</image>
+      <caption>fixed window (orange skin)</caption>
+      <caption xml:lang="zh">固定工具条 (暖橙 皮肤)</caption>
+      <caption xml:lang="zh_Hans">固定工具条 (暖橙 皮肤)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im0-b.png</image>
+      <caption>fixed window (blue skin)</caption>
+      <caption xml:lang="zh">固定工具条 (冰蓝 皮肤)</caption>
+      <caption xml:lang="zh_Hans">固定工具条 (冰蓝 皮肤)</caption>
+    </screenshot>
+
+    <screenshot>
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240314-ui-2p.png</image>
       <caption>keyboard layout</caption>
       <caption xml:lang="zh">双拼方案</caption>
       <caption xml:lang="zh_Hans">双拼方案</caption>
     </screenshot>
     <screenshot>
-      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@8ba498380c67705fa63fa45570ee299fddb72e5b/flatpak/img/20240314-ui-m.png</image>
+      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240314-ui-m.png</image>
       <caption>input measurement</caption>
       <caption xml:lang="zh">输入测量</caption>
       <caption xml:lang="zh_Hans">输入测量</caption>
     </screenshot>
-    <screenshot>
-      <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@8ba498380c67705fa63fa45570ee299fddb72e5b/flatpak/img/20240314-ui-im0.png</image>
-      <caption>fixed window</caption>
-      <caption xml:lang="zh">固定工具条</caption>
-      <caption xml:lang="zh_Hans">固定工具条</caption>
-    </screenshot>
   </screenshots>
 
   <releases>
+    <release version="0.1.7" date="2024-03-21">
+      <description>
+        <p>New ui skin.</p>
+        <p xml:lang="zh">新增可更换皮肤.</p>
+        <p xml:lang="zh_Hans">新增可更换皮肤.</p>
+      </description>
+    </release>
+
     <release version="0.1.6" date="2024-03-16">
       <description>
         <p>Support a big (3M) dictionary.</p>
@@ -126,7 +147,6 @@
         <p xml:lang="zh_Hans">支持 332 万词的大词库</p>
       </description>
     </release>
-
     <release version="0.1.5" date="2024-03-14">
       <description>
         <p>New: configure ui, input measurement ui, support some shuangpin type.</p>

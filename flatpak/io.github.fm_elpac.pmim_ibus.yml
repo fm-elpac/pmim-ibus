@@ -66,6 +66,16 @@ modules:
       # ui-vue-dist
       - cp -r ui/dist/* /app/server/static/
 
+      # plugin
+      - mkdir -p /app/server/plugin
+      - cp -r pmim-ibus/plugin/* /app/server/plugin
+      # pmim-uis-nc
+      - mkdir -p /app/server/plugin/pmim-uis-nc/static
+      - cp -r pmim-ibus/uis/pmim-uis-nc/dist/* /app/server/plugin/pmim-uis-nc/static
+      # pmim-uis-bl
+      - mkdir -p /app/server/plugin/pmim-uis-bl/static
+      - cp -r pmim-ibus/uis/pmim-uis-bl/dist/* /app/server/plugin/pmim-uis-bl/static
+
       # electron dist
       - mkdir -p /app/dist-electron
       - cp dist-electron.zip /app/dist-electron
@@ -84,7 +94,7 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - env PMIMS_DB=${XDG_CONFIG_HOME}/pmim zypak-wrapper.sh /app/dist-electron/electron /app/main/main.js "$@"
+          - env PMIMS_DB=${XDG_CONFIG_HOME}/pmim PMIMS_PLUGIN=${XDG_CONFIG_HOME}/pmim/plugin zypak-wrapper.sh /app/dist-electron/electron /app/main/main.js "$@"
 
       # pmim-ibus
       - type: dir
@@ -100,7 +110,7 @@ modules:
       - type: archive
         dest: server
         path: ./build_src/pmim-server.tar.zst
-        sha256: ecc8697cd1a60476ba6e3d1a454b584854aee3e78b22c2699eb6843f6b035e70
+        sha256: 58acd5f89f161ce003f3ed61cf94483d16aba24da15df6a96135a976b024f718
 
       # deno
       - type: archive
