@@ -74,15 +74,34 @@ provide("输入", 输入);
   width: 100%;
   height: 100%;
 
+  background-color: var(--pmim-blc-b0);
+  color: var(--pmim-blc-w1);
+
   box-sizing: border-box;
   overflow: hidden;
 
-  border-top: solid 8px #FF9800;
+  border-top: solid 8px var(--pmim-blc-b10);
   font-size: 24px;
 
   padding: 0 0.6em;
 
   display: flex;
   flex-direction: column;
+
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.c-软键盘::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: var(--pmim-blc-b10);
+  box-shadow: 0 0 16px rgba(var(--pmim-blc-p2-rgb), 0.8);
 }
 </style>

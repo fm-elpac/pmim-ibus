@@ -1,5 +1,20 @@
-/* TODO */
+/* 定义全局 CSS 变量 */
 :host {
-  /* TODO */
-  --test-var: 666;
+  /* 定义颜色 */
+
+  /* 背景色: 黑 */
+  --pmim-blc-b0: #000;
+  /* 前景色: 纯白 */
+  --pmim-blc-w0: #fff;
+  /* 次白色 */
+  --pmim-blc-w1: #ddd;
+
+  /* Material Design 蓝色 */
+  --pmim-blc-b10: #2196F3;
+
+  /* 穷人小水滴: 蓝色辉光 */
+  --pmim-blc-p1: #14c8ff;
+  --pmim-blc-p2: #ddfcff;
+  --pmim-blc-p2-rgb: 221,252,255;
+
 }

@@ -41,5 +41,7 @@ const 显示 = computed(() => {
 .项:first-child {
   font-weight: bold;
   opacity: 1;
+
+  text-shadow: 0 0 4px rgba(var(--pmim-blc-p2-rgb), 0.8);
 }
 </style>

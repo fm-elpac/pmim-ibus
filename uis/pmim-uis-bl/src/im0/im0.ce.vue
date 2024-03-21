@@ -5,6 +5,8 @@ import { fixVuetify } from "../util/fixVuetify.js";
 // 首先执行修复
 fixVuetify();
 
+import cLogo from "@/c/logo.vue";
+
 const p = defineProps({
   "data-ce": String,
 });
@@ -24,13 +26,13 @@ console.log(p.dataCe);
 
 <template>
   <div class="pmim-uis-nc-im0">
-    <div class="img">
-      <img src="@/assets/p-logo-v2-512.png" />
-    </div>
-    <div class="右">
-      <span>胖喵拼音</span>
-      <div class="按钮" title="设置" @click="显示">
-        <v-icon icon="mdi-cog-outline" />
+    <div class="box">
+      <cLogo class="img" />
+      <div class="右">
+        <span>胖喵拼音</span>
+        <div class="按钮" title="设置" @click="显示">
+          <v-icon icon="mdi-cog-outline" />
+        </div>
       </div>
     </div>
   </div>
@@ -41,11 +43,21 @@ console.log(p.dataCe);
   width: 100%;
   height: 100%;
 
-  background-color: #FFF3E0;
+  display: flex;
+  align-items: stretch;
+}
+
+.box {
+  flex-grow: 1;
+  margin: 8px;
+  box-shadow: 0 0 6px rgba(var(--pmim-blc-p2-rgb), 0.6);
+
+  background-color: var(--pmim-blc-b0);
+  color: var(--pmim-blc-w1);
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 8px;
-  border: solid 4px #FF9800;
+  border: solid 4px var(--pmim-blc-b10);
 
   display: flex;
 }
@@ -54,12 +66,6 @@ console.log(p.dataCe);
   flex-shrink: 0;
   /* 拖动窗口区域 */
   -webkit-app-region: drag;
-}
-
-.img img {
-  height: 100%;
-  width: auto;
-  aspect-ratio: 1 auto;
 }
 
 .右 {
@@ -82,6 +88,7 @@ console.log(p.dataCe);
 
 .按钮:hover {
   opacity: 1;
-  color: rgb(var(--v-theme-primary));
+  color: var(--pmim-blc-p2);
+  text-shadow: 0 0 4px var(--pmim-blc-p2);
 }
 </style>

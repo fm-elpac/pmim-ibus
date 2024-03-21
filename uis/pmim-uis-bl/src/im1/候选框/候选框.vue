@@ -1,5 +1,6 @@
 <script setup>
 // 候选框: 静态显示的组件
+import cLogo from "@/c/logo.vue";
 import c左 from "../c/左.vue";
 
 const p = defineProps({
@@ -22,9 +23,7 @@ const p = defineProps({
       :候选="p.候选"
     />
 
-    <div class="img">
-      <img src="@/assets/p-logo-v2-512.png" />
-    </div>
+    <cLogo class="img" />
   </div>
 </template>
 
@@ -33,11 +32,12 @@ const p = defineProps({
   width: 100%;
   height: 100%;
 
-  background-color: #FFF3E0;
+  background-color: var(--pmim-blc-b0);
+  color: var(--pmim-blc-w1);
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 8px;
-  border: solid 4px #FF9800;
+  border: solid 4px var(--pmim-blc-b10);
 
   display: flex;
 
@@ -46,12 +46,6 @@ const p = defineProps({
 
 .img {
   flex-shrink: 0;
-}
-
-.img img {
-  height: 100%;
-  width: auto;
-  aspect-ratio: 1 auto;
 }
 
 .左 {

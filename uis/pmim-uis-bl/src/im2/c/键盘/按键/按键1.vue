@@ -11,7 +11,7 @@ const p = defineProps({
 <template>
   <div class="c-按键1">
     <c按键
-      :class="{ '激活': p.激活, 'text-medium-emphasis': !p.激活 }"
+      :class="{ '激活': p.激活 }"
       :类型="p.类型"
       :文本="p.文本"
     >
@@ -36,12 +36,12 @@ const p = defineProps({
 }
 
 .激活 {
-  color: rgb(var(--v-theme-primary));
+  color: var(--pmim-blc-p1);
   font-size: 1.2em;
 }
 
 .c-按键 {
-  border: solid 1.2px rgba(var(--v-border-color), var(--v-border-opacity));
+  border: solid 1.2px rgba(var(--pmim-blc-p2-rgb), 0.2);
   flex-grow: 1;
   flex-shrink: 1;
 }

@@ -42,6 +42,6 @@ function 点击() {
 
 .c-顶栏按钮:hover,
 .c-顶栏按钮:active {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--pmim-blc-p2-rgb), 0.1);
 }
 </style>

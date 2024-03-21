@@ -13,7 +13,7 @@ function 点击() {
 <template>
   <div
     class="c-顶栏按钮"
-    :class="{ '激活': p.激活, 'text-medium-emphasis': !p.激活 }"
+    :class="{ '激活': p.激活 }"
     @click="点击"
   >
     <slot />
@@ -29,11 +29,14 @@ function 点击() {
   padding: 0.4em;
 
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .c-顶栏按钮:hover,
 .激活 {
   font-weight: bold;
-  color: rgb(var(--v-theme-primary));
+  color: var(--pmim-blc-p2);
+  text-shadow: 0 0 4px rgba(var(--pmim-blc-p2-rgb), 0.8);
+  opacity: 1;
 }
 </style>

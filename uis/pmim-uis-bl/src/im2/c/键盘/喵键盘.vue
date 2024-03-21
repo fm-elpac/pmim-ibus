@@ -1,10 +1,11 @@
 <script setup>
+import cLogo from "@/c/logo.vue";
 import c键盘框架 from "./键盘框架.vue";
 </script>
 
 <template>
   <c键盘框架 class="c-喵键盘">
-    <img src="@/assets/p-logo-v2-512.png" />
+    <cLogo />
   </c键盘框架>
 </template>
 
@@ -15,8 +16,7 @@ import c键盘框架 from "./键盘框架.vue";
   justify-content: center;
 }
 
-img {
-  width: 10em;
+.c-logo {
   height: 10em;
 }
 </style>

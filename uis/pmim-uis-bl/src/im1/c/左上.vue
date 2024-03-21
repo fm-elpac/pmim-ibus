@@ -18,7 +18,7 @@ const p = defineProps({
     />
     <div class="右">
       <div class="名称">胖喵拼音</div>
-      <div class="翻页">翻页 , . ({{ p.页码 }}/{{ p.总页数 }})</div>
+      <div class="翻页">({{ p.页码 }}/{{ p.总页数 }})</div>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ const p = defineProps({
 .c-左上 {
   padding: 4px;
   padding-right: 8px;
-  background-color: #FF9800;
+  background-color: var(--pmim-blc-b10);
 
   display: flex;
 }
@@ -46,6 +46,11 @@ const p = defineProps({
   align-items: flex-end;
 
   color: white;
+
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .名称 {

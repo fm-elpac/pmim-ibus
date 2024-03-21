@@ -31,10 +31,15 @@ function 点击() {
   box-sizing: border-box;
 
   user-select: none;
+  transition-property: background-color, color, text-shadow;
+  transition-duration: 1s;
 }
 
 .c-按键:active {
   font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--pmim-blc-p2-rgb), 0.1);
+  color: var(--pmim-blc-p2);
+  text-shadow: 0 0 4px rgba(var(--pmim-blc-p2-rgb), 0.4);
+  transition-duration: 0s;
 }
 </style>

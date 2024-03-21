@@ -29,6 +29,6 @@ function 点击() {
 
 .c-候选项:hover,
 .c-候选项:active {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--pmim-blc-p2-rgb), 0.1);
 }
 </style>
