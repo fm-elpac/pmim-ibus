@@ -3,6 +3,7 @@
     "**/dist/*",
     "flatpak/.flatpak-builder",
     "flatpak/build",
-    "flatpak/build_src"
+    "flatpak/build_src",
+    "tmp"
   ]
 }

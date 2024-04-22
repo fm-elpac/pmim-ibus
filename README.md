@@ -71,6 +71,28 @@ A Chinese pinyin input method for ibus.
   - <https://zhuanlan.zhihu.com/p/687090245>
   - <https://juejin.cn/post/7346102009491439654>
 
+## 例行更新维护策略
+
+适用于本仓库 (pmim-ibus). 当下列条件任意一条满足时,
+本仓库的软件需要发布新的维护版本 (版本号 `x.y.z` 其中 `z` + 1). "更新所有依赖"
+并重新编译 (构建):
+
+- deno 发布新版本 (版本号 `x.y.z` 其中 `x` 或 `y` 变化)
+
+- electronjs 发布新版本 (版本号 `x.y.z` 其中 `x` 变化)
+
+- 各依赖或本仓库发布重要的安全更新 (修复比较严重的安全漏洞)
+
+当前重要依赖的版本号:
+
+- deno 1.42.4
+
+  <https://github.com/denoland/deno>
+
+- electronjs 30.0.1
+
+  <https://github.com/electron/electron>
+
 ## LICENSE
 
 GNU General Public License v3.0 or later (SPDX Identifier: `GPL-3.0-or-later`)

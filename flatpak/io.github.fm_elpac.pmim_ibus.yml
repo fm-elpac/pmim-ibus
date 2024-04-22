@@ -110,14 +110,14 @@ modules:
       - type: archive
         dest: server
         path: ./build_src/pmim-server.tar.zst
-        sha256: 58acd5f89f161ce003f3ed61cf94483d16aba24da15df6a96135a976b024f718
+        sha256: 8b63350669bfc25bbedcb6a87f0af1ab8630e5e2ea356acef8bf034450da0e79
 
       # deno
       - type: archive
         dest: dist-deno
         only-arches: [ "x86_64" ]
         path: ./build_src/deno-x86_64-unknown-linux-gnu.zip
-        sha256: 3e8fc075ca4ad61f02088d23487f61a487d18792172acff3b5cf40ac83af28dd
+        sha256: 8f769ded5ec44511ee8410c6389174e79c9d142cb4e47385d7358b552c63bdb9
 
       # electronjs dist
       - type: file
@@ -126,19 +126,19 @@ modules:
         only-arches: [ "x86_64" ]
         #path: node_modules/electron/dist
         path: ./build_src/electron.zip
-        sha256: 83a37103b67378a9073898541cfc4af8b5de708da15135f060bf26993ab426b5
+        sha256: 137965e7c6b2d29cdce0caba3bcf55c4f299a97cbd086392a192212f6d014b9e
 
       # ibrus
       - type: archive
         dest: dist-librush
         only-arches: [ "x86_64" ]
         path: ./build_src/librush_release_x86_64-unknown-linux-gnu.tar.zst
-        sha256: 1d0a1d257d6d2d4daac56a926c7a40b6215964bd27251e6c4da3e7acfc1b81cf
+        sha256: 7a9575ceff6a858023c094149da28011d66135248e24286eec20396969bbf50b
 
       # pmim-data/pmim_sys-0.db.zst
       - type: file
         dest-filename: pmim_sys-0.db.zst
         path: ./build_src/pmim_sys-0.db.zst
-        sha256: a38c90d7adb500a5f1d1cf22039a7dccf9da15c199b59a808c349230a359669c
+        sha256: 69005bb41edde8a5d87ef5d70041156196cad5f0b50e3f3bd9ff6f24c8919c04
 
 # TODO

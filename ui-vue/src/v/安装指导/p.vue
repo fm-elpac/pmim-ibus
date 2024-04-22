@@ -10,7 +10,7 @@ import c页面 from "@/c/页面.vue";
     <p>TODO</p>
 
     <h3>重启输入法</h3>
-    <p>重启本输入法的方法 (适用于 GNU/Linux) 是, 执行命令:</p>
+    <p>重启本输入法的方法 (适用于 GNU/Linux, GNOME 桌面环境) 是, 执行命令:</p>
     <pre>
 flatpak kill io.github.fm_elpac.pmim_ibus
 

@@ -6,3 +6,5 @@ flatpak/repo
 flatpak/node_modules
 flatpak/package.json
 flatpak/package-lock.json
+
+/tmp/

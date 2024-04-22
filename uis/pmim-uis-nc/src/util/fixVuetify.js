@@ -1,6 +1,6 @@
 // 修复在 Web Components (vue customElement) 中使用 vuetify 的 BUG
 // (方法 2)
-import { createApp, defineCustomElement as dce, getCurrentInstance } from "vue";
+import { createApp, getCurrentInstance } from "vue";
 
 import vuetify from "../plugin/vuetify.js";
 
@@ -11,7 +11,7 @@ export function fixVuetify() {
     vuetify,
   ];
 
-  // 创建假的 app 示例, 并安装插件
+  // 创建假的 app 实例, 并安装插件
   const app = createApp();
   // 不要把 vuetify theme 直接放到 <head> 中
   // 摸拟 unhead 接口
