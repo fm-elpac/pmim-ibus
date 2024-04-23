@@ -46,6 +46,8 @@ const p = defineProps({
 
 .img {
   flex-shrink: 0;
+  /* 拖动窗口区域 */
+  -webkit-app-region: drag;
 }
 
 .左 {

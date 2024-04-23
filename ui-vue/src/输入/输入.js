@@ -20,6 +20,10 @@ export class 输入管理器 {
 
     //# 内部状态
 
+    // 忙碌锁: 在该状态, 输入管理器忽略所有外部操作
+    // 为了修复 BUG: 连续输入多次内容 (文本)
+    this._忙 = false;
+
     // 用户的原始输入 (字符串)
     this._原始输入 = ref("");
     // pm_pin_pin() 返回的结果
@@ -151,18 +155,25 @@ export class 输入管理器 {
     this._mt_p2c = [];
   }
 
+  _忙碌锁定() {
+    this._忙 = true;
+  }
+
+  _忙碌解锁() {
+    this._忙 = false;
+  }
+
   // 处理提交 (已经确定要提交)
   async _提交() {
     // 要输入的文本
     const t = this._已输入汉字.value.join("");
     if (t.length < 1) {
+      // 没有输入内容
       return;
     }
-    // 提交前回调
-    await this._回调.提交前(t);
 
-    // 提交
-    await pm_commit({
+    // 提前保存提交数据
+    const 提交数据 = {
       t,
       pin_yin: this._已输入全拼.value,
       c: "c",
@@ -171,10 +182,19 @@ export class 输入管理器 {
       m_i: this._m_i,
       mt_pin_yin: this._mt_pin_yin,
       mt_p2c: this._mt_p2c,
-    });
+    };
 
-    // 提交后回调
-    await this._回调.提交(t);
+    // 不再等待提交完毕
+    const 非阻塞提交 = async () => {
+      // 提交前回调
+      await this._回调.提交前(t);
+      // 提交
+      await pm_commit(提交数据);
+      // 提交后回调
+      await this._回调.提交(t);
+    };
+    非阻塞提交();
+
     // 重置输入状态
     this.重置();
   }
@@ -200,18 +220,27 @@ export class 输入管理器 {
 
   // 输入第 N 个候选项
   async 输入(n) {
+    // 忙碌锁
+    if (this._忙) {
+      return;
+    }
+    this._忙碌锁定();
+
     // 检查候选项
     if (n >= this._候选项.value.length) {
+      this._忙碌解锁();
       return;
     }
     const 项 = this._候选项.value[n];
     if ((null == 项) || (项.length < 1)) {
+      this._忙碌解锁();
       return;
     }
 
     // 如果拼音切分错误, 禁止输入
     const { r } = this._拼音.value;
     if ((null != r) && (r.length > 0)) {
+      this._忙碌解锁();
       return;
     }
 
@@ -228,6 +257,8 @@ export class 输入管理器 {
       // 输入完毕, 提交
       await this._提交();
     }
+
+    this._忙碌解锁();
   }
 
   // 调用接口进行拼音切分

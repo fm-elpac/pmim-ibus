@@ -60,7 +60,10 @@ export class 窗口管理器 {
   }
 
   async _显示窗口() {
-    await this._定位窗口();
+    // 只有在成功获取 光标位置 (屏幕坐标) 时, 才重新定位窗口
+    if ((0 != this._光标[0]) || (0 != this._光标[1])) {
+      await this._定位窗口();
+    }
     await 窗口显示();
     this._实际显示 = true;
 
@@ -84,9 +87,7 @@ export class 窗口管理器 {
         await this._隐藏窗口();
       }
     } else if (this._应该显示) {
-      if (
-        ((0 != this._光标[0]) || (0 != this._光标[1])) && (this._输入长度 > 0)
-      ) {
+      if (this._输入长度 > 0) {
         await this._显示窗口();
       }
     }
@@ -105,10 +106,8 @@ export class 窗口管理器 {
           break;
         case "disable":
           this._应该显示 = false;
-          // TODO 窗口0 ?
           break;
         case "enable":
-          // TODO 窗口0 ?
           break;
       }
     } else if ("C" == 消息.类型) {
