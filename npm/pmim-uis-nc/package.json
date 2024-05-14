@@ -1,0 +1,23 @@
+{
+  "name": "@fm-elpac/pmim-uis-nc",
+  "version": "0.1.8",
+  "license": "GPL-3.0-or-later",
+  "description": "暖橙 (胖喵拼音内置皮肤) Builtin UI skin (orange color) for pmim. ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fm-elpac/pmim-ibus.git"
+  },
+  "author": "secext2022",
+  "keywords": [
+    "pmim",
+    "plugin"
+  ],
+  "bugs": {
+    "url": "https://github.com/fm-elpac/pmim-ibus/issues"
+  },
+  "homepage": "https://github.com/fm-elpac/pmim-ibus",
+  "main": "static/pmim-uis-nc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
