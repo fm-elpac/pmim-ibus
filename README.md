@@ -7,6 +7,9 @@
 A Chinese pinyin input method for ibus.
 
 ![CI](https://github.com/fm-elpac/pmim-ibus/actions/workflows/ci.yml/badge.svg)
+<a href="https://flathub.org/zh-Hans/apps/io.github.fm_elpac.pmim_ibus">
+<img width="240" alt="Flathub 下载" src="https://flathub.org/api/badge?locale=zh-Hans"/>
+</a>
 
 镜像:
 
