@@ -7,13 +7,16 @@
 
   <name>PMIM</name>
   <name xml:lang="zh">胖喵拼音</name>
+  <name xml:lang="zh-Hans">胖喵拼音</name>
+
   <summary>A Chinese pinyin input method</summary>
   <summary xml:lang="zh">简单的跨平台开源输入法</summary>
+  <summary xml:lang="zh-Hans">简单的跨平台开源输入法</summary>
 
   <developer id="io.github.fm_elpac">
     <name>secext2022</name>
     <name xml:lang="zh">第二扩展</name>
-    <name xml:lang="zh_Hans">穷人小水滴</name>
+    <name xml:lang="zh-Hans">穷人小水滴</name>
   </developer>
 
   <description>
@@ -36,12 +39,26 @@
 
       本输入法是跨平台的, 另外还有 Android 版本 (详见项目页面).
     </p>
+    <p xml:lang="zh-Hans">
+      胖喵拼音输入法 (ibus)
+
+      本输入法的功能非常简单 (简陋), 使用之前请做好心理准备.
+      但是本输入法的源代码一共只有几千行,
+      建议每个用户在使用之前先读一遍源代码.
+
+      本输入法是跨平台的, 另外还有 Android 版本 (详见项目页面).
+    </p>
+
     <p>
       Please note that this is only the input method (engine),
       need to install and configure ibus for this app to work.
       Please see the project page (link below) for how to setup.
     </p>
     <p xml:lang="zh">
+      这只是输入法, 需要另外安装和配置 ibus 才能正常工作.
+      具体安装步骤请见项目页面 (链接在下方).
+    </p>
+    <p xml:lang="zh-Hans">
       这只是输入法, 需要另外安装和配置 ibus 才能正常工作.
       具体安装步骤请见项目页面 (链接在下方).
     </p>
@@ -61,12 +78,15 @@
   <keywords>
     <keyword translate="no">ibus</keyword>
     <keyword xml:lang="zh">ibus</keyword>
+    <keyword xml:lang="zh-Hans">ibus</keyword>
 
     <keyword translate="no">input method</keyword>
     <keyword xml:lang="zh">输入法</keyword>
+    <keyword xml:lang="zh-Hans">输入法</keyword>
 
     <keyword translate="no">pinyin</keyword>
     <keyword xml:lang="zh">拼音</keyword>
+    <keyword xml:lang="zh-Hans">拼音</keyword>
   </keywords>
 
   <content_rating type="oars-1.1" />
@@ -77,44 +97,57 @@
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im1.png</image>
       <caption>input window (orange skin)</caption>
       <caption xml:lang="zh">候选框窗口 (暖橙 皮肤)</caption>
+      <caption xml:lang="zh-Hans">候选框窗口 (暖橙 皮肤)</caption>
     </screenshot>
 
     <screenshot>
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im1-b.png</image>
       <caption>input window (blue skin)</caption>
       <caption xml:lang="zh">候选框窗口 (冰蓝 皮肤)</caption>
+      <caption xml:lang="zh-Hans">候选框窗口 (冰蓝 皮肤)</caption>
     </screenshot>
     <screenshot>
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im0.png</image>
       <caption>fixed window (orange skin)</caption>
       <caption xml:lang="zh">固定工具条 (暖橙 皮肤)</caption>
+      <caption xml:lang="zh-Hans">固定工具条 (暖橙 皮肤)</caption>
     </screenshot>
     <screenshot>
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240321-ui-im0-b.png</image>
       <caption>fixed window (blue skin)</caption>
       <caption xml:lang="zh">固定工具条 (冰蓝 皮肤)</caption>
+      <caption xml:lang="zh-Hans">固定工具条 (冰蓝 皮肤)</caption>
     </screenshot>
 
     <screenshot>
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240314-ui-2p.png</image>
       <caption>keyboard layout</caption>
       <caption xml:lang="zh">双拼方案</caption>
+      <caption xml:lang="zh-Hans">双拼方案</caption>
     </screenshot>
     <screenshot>
       <image>https://cdn.jsdelivr.net/gh/fm-elpac/pmim-ibus@bb56ae0363798d2422c6f1b2c66e8e954d279d6b/flatpak/img/20240314-ui-m.png</image>
       <caption>input measurement</caption>
       <caption xml:lang="zh">输入测量</caption>
+      <caption xml:lang="zh-Hans">输入测量</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="0.1.9" date="2024-06-02">
+      <description>
+        <p>Fix flathub translation.</p>
+        <p xml:lang="zh">修复 flathub 翻译.</p>
+        <p xml:lang="zh-Hans">修复 flathub 翻译.</p>
+      </description>
+    </release>
+
     <release version="0.1.8" date="2024-04-23">
       <description>
         <p>Update dependencies.</p>
         <p xml:lang="zh">更新依赖.</p>
       </description>
     </release>
-
     <release version="0.1.7" date="2024-03-21">
       <description>
         <p>New ui skin.</p>
@@ -131,12 +164,6 @@
       <description>
         <p>New: configure ui, input measurement ui, support some shuangpin type.</p>
         <p xml:lang="zh">新增: 设置界面, 输入测量界面, 支持多种双拼方案</p>
-      </description>
-    </release>
-    <release version="0.1.2" date="2024-03-06">
-      <description>
-        <p>Fix flathub translate.</p>
-        <p xml:lang="zh">修复 flathub 翻译.</p>
       </description>
     </release>
     <release version="0.1.0" date="2024-03-01">

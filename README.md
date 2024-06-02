@@ -85,11 +85,11 @@ A Chinese pinyin input method for ibus.
 
 当前重要依赖的版本号:
 
-- deno 1.42.4
+- deno 1.44.0
 
   <https://github.com/denoland/deno>
 
-- electronjs 30.0.1
+- electronjs 30.0.9
 
   <https://github.com/electron/electron>
 
