@@ -8,7 +8,7 @@ A Chinese pinyin input method for ibus.
 
 ![CI](https://github.com/fm-elpac/pmim-ibus/actions/workflows/ci.yml/badge.svg)
 <a href="https://flathub.org/zh-Hans/apps/io.github.fm_elpac.pmim_ibus">
-<img width="240" alt="Flathub 下载" src="https://flathub.org/api/badge?locale=zh-Hans"/>
+<img width="120" alt="Flathub 下载" src="https://flathub.org/api/badge?locale=zh-Hans"/>
 </a>
 
 镜像:
@@ -88,11 +88,11 @@ A Chinese pinyin input method for ibus.
 
 当前重要依赖的版本号:
 
-- deno 1.44.0
+- deno 1.45.3
 
   <https://github.com/denoland/deno>
 
-- electronjs 30.0.9
+- electronjs 31.3.0
 
   <https://github.com/electron/electron>
 
