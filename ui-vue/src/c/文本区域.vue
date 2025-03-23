@@ -15,7 +15,7 @@ const 值 = ref(p.modelValue);
 
 watch(值, () => {
   更新(值.value);
-})
+});
 </script>
 
 <template>

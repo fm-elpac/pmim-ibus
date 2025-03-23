@@ -15,7 +15,6 @@ const 显示 = computed(() => {
   }
   return o;
 });
-
 </script>
 
 <template>

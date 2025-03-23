@@ -15,7 +15,6 @@ A Chinese pinyin input method for ibus.
 
 - <https://bitbucket.org/fm-elpac/pmim-ibus/>
 - <https://codeberg.org/fm-elpac/pmim-ibus>
-- <https://notabug.org/fm-elpac/pmim-ibus>
 - <https://gitlab.com/fm-elpac/pmim-ibus>
 
 ---
@@ -88,11 +87,11 @@ A Chinese pinyin input method for ibus.
 
 当前重要依赖的版本号:
 
-- deno 1.45.3
+- deno 1.46.3
 
   <https://github.com/denoland/deno>
 
-- electronjs 31.3.0
+- electronjs 35.0.3
 
   <https://github.com/electron/electron>
 

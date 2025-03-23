@@ -19,7 +19,7 @@ onMounted(() => emit("加载"));
 </script>
 
 <template>
-  <c候选框
+  <c候选�
     class="pmim-uis-nc-im1"
     :页码="p.页码"
     :总页数="p.总页数"

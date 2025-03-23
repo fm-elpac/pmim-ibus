@@ -5,7 +5,7 @@ const p = defineProps({
 </script>
 
 <template>
-  <div class="c-键盘框架" :class="{ '滚动': p.滚动 }">
+  <div class="c-键盘框架" :class='{ "滚动": p.滚动 }'>
     <slot />
   </div>
 </template>

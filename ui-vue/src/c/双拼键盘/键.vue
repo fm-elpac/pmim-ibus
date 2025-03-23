@@ -84,12 +84,12 @@ const 韵母 = computed(() => {
 
 .声母 {
   line-height: 1em;
-  color: #FF9800;
+  color: #ff9800;
 }
 
 .韵母 {
   line-height: 1em;
-  color: #2196F3;
+  color: #2196f3;
 }
 
 .韵母 span {

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { 设置缩放 } from "@/api/ea/mod.js";
 import { 初始化灰度模式 } from "@/util/nc.js";

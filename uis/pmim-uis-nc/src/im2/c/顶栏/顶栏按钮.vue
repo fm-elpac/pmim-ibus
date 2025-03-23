@@ -13,7 +13,7 @@ function 点击() {
 <template>
   <div
     class="c-顶栏按钮"
-    :class="{ '激活': p.激活, 'text-medium-emphasis': !p.激活 }"
+    :class='{ "激活": p.激活, "text-medium-emphasis": !p.激活 }'
     @click="点击"
   >
     <slot />

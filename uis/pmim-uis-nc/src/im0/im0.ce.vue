@@ -41,11 +41,11 @@ console.log(p.dataCe);
   width: 100%;
   height: 100%;
 
-  background-color: #FFF3E0;
+  background-color: #fff3e0;
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 8px;
-  border: solid 4px #FF9800;
+  border: solid 4px #ff9800;
 
   display: flex;
 }

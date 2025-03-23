@@ -41,12 +41,14 @@ build_lo:
 build_uis_nc:
 	cd uis/pmim-uis-nc && npm run build
 	cp uis/pmim-uis-nc/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2 uis/pmim-uis-nc/dist
+	mv uis/pmim-uis-nc/dist/pmim-uis-nc.css uis/pmim-uis-nc/dist/style.css
 	deno run -A uis/patch/fix_css_font.js uis/pmim-uis-nc/dist/style.css
 
 .PHONY: build_uis_bl
 build_uis_bl:
 	cd uis/pmim-uis-bl && npm run build
 	cp uis/pmim-uis-bl/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2 uis/pmim-uis-bl/dist
+	mv uis/pmim-uis-bl/dist/pmim-uis-bl.css uis/pmim-uis-bl/dist/style.css
 	deno run -A uis/patch/fix_css_font.js uis/pmim-uis-bl/dist/style.css
 
 # 复制插件文件

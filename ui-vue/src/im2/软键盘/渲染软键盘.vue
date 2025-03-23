@@ -1,6 +1,6 @@
 <script setup>
 // 渲染软键盘: 负责提供数据, 渲染软键盘界面
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { 加载双拼方案和键盘布局 } from "@/插件/mod.js";
 import { use输入 } from "./hook.js";
 import c皮肤 from "@/c/皮肤.js";
@@ -46,7 +46,7 @@ async function 输入1(e) {
 </script>
 
 <template>
-  <c皮肤
+  <c皮�
     v-if="已加载"
     能力="im2"
     :双拼方案="双拼方案"

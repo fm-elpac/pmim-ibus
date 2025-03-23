@@ -1,10 +1,10 @@
 app-id: io.github.fm_elpac.pmim_ibus
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: "24.08"
 sdk: org.freedesktop.Sdk
 
 base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
+base-version: "24.08"
 separate-locales: false
 
 command: run.sh
@@ -47,13 +47,13 @@ modules:
       - install -Dm755 -t /app/bin/ dist-deno/deno
 
       - |
-        if [ "$FLATPAK_ARCH" == "x86_64" ]; then
-          install -Dm755 -t /app/bin/ dist-librush/release/ibrus
-        fi
+          if [ "$FLATPAK_ARCH" == "x86_64" ]; then
+            install -Dm755 -t /app/bin/ dist-librush/release/ibrus
+          fi
       - |
-        if [ "$FLATPAK_ARCH" == "aarch64" ]; then
-          install -Dm755 -t /app/bin/ dist-librush/aarch64-unknown-linux-gnu/release/ibrus
-        fi
+          if [ "$FLATPAK_ARCH" == "aarch64" ]; then
+            install -Dm755 -t /app/bin/ dist-librush/aarch64-unknown-linux-gnu/release/ibrus
+          fi
 
       - cp pmim-ibus/flatpak/pmim_ibrus.xml /app
 
@@ -115,25 +115,25 @@ modules:
       # deno
       - type: archive
         dest: dist-deno
-        only-arches: [ "x86_64" ]
+        only-arches: ["x86_64"]
         path: ./build_src/deno-x86_64-unknown-linux-gnu.zip
-        sha256: 8102989679275f1c9859fd963ef407f60da0274337fbb75290b3e9df8174a30b
+        sha256: 39bb1d21ad19c16fcb14f9d58fb542c2bccf0cd92c19aee8127ac5112b48bf83
 
       # electronjs dist
       - type: file
-      #- type: dir
+        #- type: dir
         dest-filename: dist-electron.zip
-        only-arches: [ "x86_64" ]
+        only-arches: ["x86_64"]
         #path: node_modules/electron/dist
         path: ./build_src/electron.zip
-        sha256: f44e33a29019ce7f12a78d7dc376b467907f71936323feadae5a8ad932951856
+        sha256: 44504bde889285d5798bd5921de87af492551ab1221be531a678dbb39ad58288
 
       # ibrus
       - type: archive
         dest: dist-librush
-        only-arches: [ "x86_64" ]
+        only-arches: ["x86_64"]
         path: ./build_src/librush_release_x86_64-unknown-linux-gnu.tar.zst
-        sha256: 8af4ae4d927b3a2a88a8e8dbb4448bde0c384d509bc838c4aaeaabc24525906e
+        sha256: 1d6120fb6d8e1b7738afef6cf54012c467e97768936d3b3b758ed341a7d99bfa
 
       # pmim-data/pmim_sys-0.db.zst
       - type: file

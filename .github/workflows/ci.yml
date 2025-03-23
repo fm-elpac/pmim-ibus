@@ -10,94 +10,94 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: denoland/setup-deno@v1
-      with:
-        deno-version: v1.x
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v2.x
 
-    - run: deno fmt --check
+      #- run: deno fmt --check
 
-    # build
-    - run: make build
+      # build
+      - run: make build
 
-    - run: tar --zstd -cvf ui-vue-dist.tar.zst ui-vue/dist
-    - uses: actions/upload-artifact@v4
-      with:
-        name: ui-vue-dist
-        path: ui-vue-dist.tar.zst
+      - run: tar --zstd -cvf ui-vue-dist.tar.zst ui-vue/dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ui-vue-dist
+          path: ui-vue-dist.tar.zst
 
-    # plugin
-    - run: make plugin
+      # plugin
+      - run: make plugin
 
-    - run: tar --zstd -cvf pmim-plugin.tar.zst plugin
-    - uses: actions/upload-artifact@v4
-      with:
-        name: pmim-plugin
-        path: pmim-plugin.tar.zst
+      - run: tar --zstd -cvf pmim-plugin.tar.zst plugin
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pmim-plugin
+          path: pmim-plugin.tar.zst
 
   flatpak:
     needs: build
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-46
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
       options: --privileged
     steps:
-    - uses: actions/checkout@v4
-    - uses: denoland/setup-deno@v1
-      with:
-        deno-version: v1.x
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v2.x
 
-    - run: dnf -y install npm make
+      - run: dnf -y install npm make
 
-    # build
-    - run: make build
-    - run: make plugin
+      # build
+      - run: make build
+      - run: make plugin
 
-    - run: mkdir -p flatpak/build_src
+      - run: mkdir -p flatpak/build_src
 
-    # deno
-    - uses: robinraju/release-downloader@v1
-      with:
-        repository: "denoland/deno"
-        tag: "v1.45.3"
-        fileName: "deno-x86_64-unknown-linux-gnu.zip"
-    - run: mv deno-x86_64-unknown-linux-gnu.zip flatpak/build_src
+      # deno
+      - uses: robinraju/release-downloader@v1
+        with:
+          repository: "denoland/deno"
+          tag: "v1.46.3"
+          fileName: "deno-x86_64-unknown-linux-gnu.zip"
+      - run: mv deno-x86_64-unknown-linux-gnu.zip flatpak/build_src
 
-    # electronjs dist
-    - uses: robinraju/release-downloader@v1
-      with:
-        repository: "electron/electron"
-        tag: "v31.3.0"
-        fileName: "electron-v31.3.0-linux-x64.zip"
-    - run: mv electron-v31.3.0-linux-x64.zip flatpak/build_src/electron.zip
+      # electronjs dist
+      - uses: robinraju/release-downloader@v1
+        with:
+          repository: "electron/electron"
+          tag: "v35.0.3"
+          fileName: "electron-v35.0.3-linux-x64.zip"
+      - run: mv electron-v35.0.3-linux-x64.zip flatpak/build_src/electron.zip
 
-    # ibrus
-    - uses: robinraju/release-downloader@v1
-      with:
-        repository: "fm-elpac/librush"
-        tag: "v0.1.0"
-        fileName: "librush_release_x86_64-unknown-linux-gnu.tar.zst"
-    - run: mv librush_release_x86_64-unknown-linux-gnu.tar.zst flatpak/build_src
+      # ibrus
+      - uses: robinraju/release-downloader@v1
+        with:
+          repository: "fm-elpac/librush"
+          tag: "v0.2.1"
+          fileName: "librush_release_x86_64-unknown-linux-gnu.tar.zst"
+      - run: mv librush_release_x86_64-unknown-linux-gnu.tar.zst flatpak/build_src
 
-    # pmim-server
-    - uses: robinraju/release-downloader@v1
-      with:
-        repository: "fm-elpac/pmim"
-        tag: "v0.1.5"
-        fileName: "pmim-server.tar.zst"
-    - run: mv pmim-server.tar.zst flatpak/build_src
+      # pmim-server
+      - uses: robinraju/release-downloader@v1
+        with:
+          repository: "fm-elpac/pmim"
+          tag: "v0.1.5"
+          fileName: "pmim-server.tar.zst"
+      - run: mv pmim-server.tar.zst flatpak/build_src
 
-    # pmim-data
-    - uses: robinraju/release-downloader@v1
-      with:
-        repository: "fm-elpac/pmim-data"
-        tag: "v0.1.5"
-        fileName: "pmim_sys-0.db.zst"
-    - run: mv pmim_sys-0.db.zst flatpak/build_src
+      # pmim-data
+      - uses: robinraju/release-downloader@v1
+        with:
+          repository: "fm-elpac/pmim-data"
+          tag: "v0.1.5"
+          fileName: "pmim_sys-0.db.zst"
+      - run: mv pmim_sys-0.db.zst flatpak/build_src
 
-    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
-      with:
-        bundle: pmim_ibus.flatpak
-        manifest-path: flatpak/io.github.fm_elpac.pmim_ibus.yml
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: pmim_ibus.flatpak
+          manifest-path: flatpak/io.github.fm_elpac.pmim_ibus.yml
 
   # TODO

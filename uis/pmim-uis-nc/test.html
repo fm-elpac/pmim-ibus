@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>test vuetify 666</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>test vuetify 666</title>
 
-<script>
-// TODO
-const process = {
-  env: {},
-};
-</script>
-</head>
-<body>
+    <script>
+      // TODO
+      const process = {
+        env: {},
+      };
+    </script>
+  </head>
+  <body>
+    <script src="./dist/pmim-uis-nc.js"></script>
 
-<script src="./dist/pmim-uis-nc.js"></script>
+    <pmim-uis-nc-im0 id="im0"></pmim-uis-nc-im0>
 
-<pmim-uis-nc-im0 id="im0"></pmim-uis-nc-im0>
+    <script>
+      // fix style
+      const im0 = document.getElementById("im0");
 
-<script>
-// fix style
-const im0 = document.getElementById("im0");
+      const s = document.createElement("link");
+      s.rel = "stylesheet";
+      s.type = "text/css";
+      s.href = "./dist/style.css";
 
-const s = document.createElement("link");
-s.rel = "stylesheet";
-s.type = "text/css";
-s.href = "./dist/style.css";
+      im0.shadowRoot.appendChild(s.cloneNode());
 
-im0.shadowRoot.appendChild(s.cloneNode());
+      // chromium BUG
+      // https://github.com/w3c/csswg-drafts/issues/1995
+      // https://github.com/open-pioneer/trails-starter/issues/83
+      // https://developer.mozilla.org/en-US/docs/Web/API/FontFace/FontFace
 
-// chromium BUG
-// https://github.com/w3c/csswg-drafts/issues/1995
-// https://github.com/open-pioneer/trails-starter/issues/83
-// https://developer.mozilla.org/en-US/docs/Web/API/FontFace/FontFace
-
-// load font
-const f = new FontFace("pmim-uis-nc Material Design Icons", "url(\"./dist/materialdesignicons-webfont.woff2?v=7.4.47\")  format(\"woff2\")");
-document.fonts.add(f);
-</script>
-</body>
+      // load font
+      const f = new FontFace(
+        "pmim-uis-nc Material Design Icons",
+        'url("./dist/materialdesignicons-webfont.woff2?v=7.4.47")  format("woff2")',
+      );
+      document.fonts.add(f);
+    </script>
+  </body>
 </html>
