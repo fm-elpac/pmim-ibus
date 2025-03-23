@@ -13,7 +13,7 @@ const p = defineProps({
 
 <template>
   <div class="c-候选框">
-    <c�
+    <c左
       class="左"
       :页码="p.页码"
       :总页数="p.总页数"
